@@ -3,7 +3,15 @@
     "display": "Astro",
     "extends": "./base.json",
     "compilerOptions": {
-      "jsx": "preserve",
-      "jsxImportSource": "solid-js"
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "node",
+        "resolveJsonModule": true,
+        "isolatedModules": true,
+        "noEmit": true,
+        "forceConsistentCasingInFileNames": true,
+        "esModuleInterop": true,
+        "jsx": "preserve",
+        "jsxImportSource": "solid-js"
     }
 }
