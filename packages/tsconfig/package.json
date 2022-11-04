@@ -5,6 +5,7 @@
   "files": [
     "base.json",
     "nextjs.json",
+    "astro.json",
     "react-library.json"
   ]
 }
