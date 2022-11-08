@@ -8,36 +8,18 @@ const _inventory = (await InventoryService.inventoryGetItems("X6A22CBB325M1")).e
 
 const Inventory: Component = () => {
 
-    const [inventory, setInventory] = createSignal(_inventory);
-
-    onMount(() => {
-        console.log(inventory());
-    })
+    const [inventory] = createSignal(_inventory);
 
     return (
-        <div>
+        <div class="container mx-auto">
+        <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-8">
             {inventory().map((item) => (
                 <Card item={item}></Card>
             ))}
         </div>
+        </div>
     );
 }
-/**
- * <For each={inventory()}>{(list) =>
-                <li class="bg-white p-4">
-                    <span class="inline-block mb-2 text-lg font-bold">
-                    {list.name}
-                    </span>
-                    <span class="inline-block mb-2">
-                    Country: {list.country}
-                    </span>
-                    <span class="inline-block mb-2">
-                    City: {list.city}
-                    </span>
-                </li>}
-            </For>
- * 
- */
 
 
 export default Inventory;

@@ -1,5 +1,5 @@
 import type { Component } from "solid-js";
-import { Item } from "../../clover";
+import type { Item } from "../../clover";
 
 export type CardProps = {
     item: Item
@@ -7,61 +7,17 @@ export type CardProps = {
 
 const Card: Component<CardProps> = (props) => {
     return (
-        <div class="
-            max-w-sm 
-            bg-white 
-            rounded-lg 
-            border 
-            border-gray-200 
-            shadow-md 
-            dark:bg-gray-800 
-            dark:border-gray-700">
-            <a href="#">
-                <img class="rounded-t-lg" src="https://cloverstatic.com/menu-assets/items/K8NCF4X73G0NJ_120x120.jpeg" alt=""/>
-            </a>
-            <div class="p-5">
-                <a href="#">
-                    <h5 class="
-                        mb-2 
-                        text-2xl 
-                        font-bold 
-                        tracking-tight 
-                        text-gray-900 
-                        dark:text-white">
-                        {props.item.name}
-                    </h5>
-                </a>
-                <p class="
-                    mb-3 
-                    font-normal 
-                    text-gray-700 
-                    dark:text-gray-400">
-                    ${props.item.cost}
-                </p>
-                <a href="#" class="
-                    inline-flex 
-                    items-center 
-                    py-2 
-                    px-3 
-                    text-sm 
-                    font-medium 
-                    text-center 
-                    text-white 
-                    bg-green-700 
-                    rounded-lg 
-                    hover:bg-green-800 
-                    focus:ring-4 
-                    focus:outline-none 
-                    focus:ring-green-300 
-                    dark:bg-blue-600 
-                    dark:hover:bg-green-700 
-                    dark:focus:ring-green-800">
-                    Read more
-                    <svg aria-hidden="true" class="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                </a>
+        <div class="card card-side h-56 bg-base-100 shadow-xl">
+            <figure><img src="https://placeimg.com/200/280/arch" alt="Movie"/></figure>
+            <div class="card-body">
+                <h2 class="card-title">{props.item.name}</h2>
+                <p>${props.item.cost}</p>
+                <div class="card-actions justify-end">
+                <button class="btn btn-primary">Add To Cart</button>
+                </div>
             </div>
         </div>
-    )
-}
+    );
+};
 
 export default Card;
