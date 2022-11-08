@@ -2,13 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import Title from "../components/Title";
 import Checkout from "../components/Checkout";
+import Inventory from "../components/Inventory";
 ---
 
 <Layout title="Welcome to Astro.">
   <main>
     <Title />
     <Checkout client:load />
-
+    <Inventory client:only="solid" />
     <style>
       main {
         margin: auto;
