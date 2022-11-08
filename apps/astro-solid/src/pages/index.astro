@@ -1,34 +1,11 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Title from "../components/Title";
-import Checkout from "../components/Checkout";
 import Inventory from "../components/Inventory";
 //https://www.clover.com/online-ordering/edgy-veggie-co-soldotna
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout title="Edgy Veggies">
   <main>
-    <Title />
-    <Checkout client:load />
-    <Inventory client:load />
-    <style>
-      main {
-        margin: auto;
-        padding: 1.5rem;
-        max-width: 60ch;
-      }
-      h1 {
-        font-size: 3rem;
-        font-weight: 800;
-        margin: 0;
-      }
-      .text-gradient {
-        background-image: var(--accent-gradient);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-size: 400%;
-        background-position: 0%;
-      }
-    </style>
+    <Inventory />
   </main>
 </Layout>
