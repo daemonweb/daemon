@@ -2,10 +2,9 @@
   "name": "astro-solid",
   "version": "0.0.1",
   "private": true,
-  "type": "module",
   "scripts": {
     "generate": "openapi --input https://dash.readme.com/api/v1/api-registry/93f22ll93rmuy1 --output ./clover",
-    "lint": "astro lint",
+    "lint": "eslint",
     "dev": "astro dev",
     "start": "astro dev",
     "build": "astro build",
@@ -21,10 +20,13 @@
     "tailwindcss": "^3.2.2"
   },
   "devDependencies": {
-    "openapi-typescript-codegen": "^0.23.0",
-    "eslint-config-custom": "workspace:*",
-    "eslint": "7.32.0",
+    "@babel/core": "^7.20.2",
     "@types/core-js": "^2.5.5",
-    "tsconfig": "workspace:0.0.0"
+    "eslint": "7.32.0",
+    "eslint-config-custom": "workspace:*",
+    "eslint-plugin-solid": "^0.8.0",
+    "openapi-typescript-codegen": "^0.23.0",
+    "tsconfig": "workspace:*",
+    "typescript": "^4.8.4"
   }
 }
