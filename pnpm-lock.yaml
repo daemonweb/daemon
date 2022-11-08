@@ -21,6 +21,7 @@ importers:
       '@types/core-js': ^2.5.5
       '@typescript-eslint/parser': ^5.42.1
       astro: ^1.6.4
+      clover: file:./clover
       eslint: 7.32.0
       eslint-config-custom: workspace:*
       eslint-plugin-solid: ^0.8.0
@@ -34,6 +35,7 @@ importers:
       '@astrojs/tailwind': 2.1.2_tailwindcss@3.2.2
       '@astrojs/vercel': 2.3.3
       astro: 1.6.4
+      clover: file:apps/astro-solid/clover
       solid-js: 1.6.1
       tailwindcss: 3.2.2
     devDependencies:
@@ -5222,4 +5224,10 @@ packages:
 
   /zwitch/2.0.2:
     resolution: {integrity: sha512-JZxotl7SxAJH0j7dN4pxsTV6ZLXoLdGME+PsjkL/DaBrVryK9kTGq06GfKrwcSOqypP+fdXGoCHE36b99fWVoA==}
+    dev: false
+
+  file:apps/astro-solid/clover:
+    resolution: {directory: apps/astro-solid/clover, type: directory}
+    name: clover
+    version: 0.0.0
     dev: false
