@@ -2,6 +2,7 @@
   "name": "clover-shop",
   "version": "0.0.1",
   "private": true,
+  "type": "module",
   "scripts": {
     "generate": "openapi --input https://dash.readme.com/api/v1/api-registry/93f22ll93rmuy1 --output ./clover",
     "lint": "eslint",
