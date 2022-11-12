@@ -1,5 +1,6 @@
 import type { Component } from "solid-js";
 import type { Item } from "../../clover";
+import { TriggerModal } from "./Modal";
 
 export type CardProps = {
     item: Item
@@ -30,7 +31,9 @@ const Card: Component<CardProps> = (props) => {
                 <h2 class="card-title">{props.item.name}</h2>
                 <p>{getPrice(props.item.price)}</p>
                 <div class="card-actions justify-end">
-                <button class="btn btn-green">Add To Cart</button>
+                <TriggerModal>
+                    Add To Cart
+                </TriggerModal>
                 </div>
             </div>
         </div>
