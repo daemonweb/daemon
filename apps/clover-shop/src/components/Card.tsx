@@ -25,6 +25,7 @@ export type CardProps = {
 
 const Card: Component<CardProps> = (props) => {
     const modal = useModal();
+    console.log('modal', modal);
 
     return (
         <div class="card card-side h-48 bg-base-100 shadow-xl">
@@ -35,7 +36,7 @@ const Card: Component<CardProps> = (props) => {
                 <h2 class="card-title">{props.item.name}</h2>
                 <p>{getPrice(props.item.price)}</p>
                 <div class="card-actions justify-end">
-                    <button class="btn" onClick={() => modal.actions.open()}>Add To Cart</button>
+                    <button class="btn" onClick={() => modal?.actions.open()}>Add To Cart</button>
                 </div>
             </div>
         </div>

@@ -2,8 +2,8 @@ import { Component, createSignal, createContext, Context, useContext, JSX } from
 import { createStore } from "solid-js/store";
 
 // TODO: Any way I can avoid initiallizing this here while still avoiding the "| undefined" type?
-const model:ModalContextModel = {state: {isOpen: false}, actions: {open:()=>{},close:()=>{},toggle:()=>{}}};
-export const ModalContext = createContext<ModalContextModel>(model);
+//const model:ModalContextModel = {state: {isOpen: false}, actions: {open:()=>{},close:()=>{},toggle:()=>{}}};
+export const ModalContext = createContext<ModalContextModel>();
 
 type ModalState = {
     isOpen: boolean,
@@ -32,14 +32,17 @@ export const ModalProvider = (props: ModalProviderProps) => {
         state:state,
         actions: {
             open(component: JSX.Element) {
+                console.log("open modal");
                 setState({isOpen: true, content: component});
                 document.body.style.overflow = "hidden";
             },
             close() {
+                console.log("close modal");
                 setState({isOpen: false});
                 document.body.style.overflow = "unset";
             },
             toggle() {
+                console.log("toggle modal");
                 setState({
                     ...state,
                     isOpen: !state.isOpen
@@ -53,6 +56,28 @@ export const ModalProvider = (props: ModalProviderProps) => {
             {props.children}
         </ModalContext.Provider>
     );
+}
+
+export const Modal: Component = () => {
+
+    const modal = useModal();
+
+    return (
+        <>
+            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
+            <label for="my-modal-4" class={`modal cursor-pointer ${(modal.state.isOpen) ? "modal-open" : ""}`}>
+                <label class="modal-box relative" for="">
+                    <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
+                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
+                </label>
+            </label>
+        </>
+    );
+};
+
+export const useModal = ():ModalContextModel | undefined => {
+    return useContext(ModalContext);
 }
 
 // export type TriggerModalProps = {
@@ -78,27 +103,3 @@ export const ModalProvider = (props: ModalProviderProps) => {
 //         </label>
 //     );
 // }
-
-
-
-export const Modal: Component = () => {
-
-    const modal = useModal();
-
-    return (
-        <>
-            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-            <label for="my-modal-4" class={`modal cursor-pointer ${(modal.state.isOpen) ? "modal-open" : ""}`}>
-                <label class="modal-box relative" for="">
-                    <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                    <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
-                    <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
-                </label>
-            </label>
-        </>
-    );
-};
-
-export const useModal = ():ModalContextModel => {
-    return useContext(ModalContext);
-}
