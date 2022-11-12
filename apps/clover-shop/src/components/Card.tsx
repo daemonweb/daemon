@@ -1,10 +1,8 @@
 import type { Component } from "solid-js";
 import type { Item } from "../../clover";
-import { TriggerModal } from "./Modal";
+import { useModal } from "./Modal";
 
-export type CardProps = {
-    item: Item
-}
+
 
 const getItemThumbnailUrl = (itemId: string | undefined): string => {
     return (itemId) 
@@ -21,7 +19,13 @@ const getPrice = (price: Number): string => {
     return `$${rawString.substring(0, i)}.${rawString.substring(i, rawString.length)}`
 }
 
+export type CardProps = {
+    item: Item
+}
+
 const Card: Component<CardProps> = (props) => {
+    const modal = useModal();
+
     return (
         <div class="card card-side h-48 bg-base-100 shadow-xl">
             <figure class="h-full w-48">
@@ -31,9 +35,7 @@ const Card: Component<CardProps> = (props) => {
                 <h2 class="card-title">{props.item.name}</h2>
                 <p>{getPrice(props.item.price)}</p>
                 <div class="card-actions justify-end">
-                <TriggerModal>
-                    Add To Cart
-                </TriggerModal>
+                    <button class="btn" onClick={() => modal.actions.open()}>Add To Cart</button>
                 </div>
             </div>
         </div>
