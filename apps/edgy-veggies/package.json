@@ -5,9 +5,9 @@
   "scripts": {
     "generate": "openapi --input https://dash.readme.com/api/v1/api-registry/93f22ll93rmuy1 --output ./clover",
     "lint": "eslint",
-    "dev": "node lib/entry-server.js",
+    "dev": "node dist/server/entry-server.js",
     "build": "npm run build:client && npm run build:server",
-    "build:client": "vite build",
+    "build:client": "vite build --base=/dist/client/",
     "build:server": "SSR=true vite build --ssr",
     "serve": "vite preview"
   },

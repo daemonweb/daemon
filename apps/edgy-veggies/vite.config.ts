@@ -21,11 +21,11 @@ export default defineConfig({
         preserveEntrySignatures: false,
         output: [
           {
-            dir: "lib",
+            dir: "dist/server",
             format: "cjs",
           }
         ],
-        external: ["solid-js", "solid-js/web", "path", "express", "stream"],
+        external: ["solid-js", "solid-js/web", "path", "express"],
         plugins: [
             nodeResolve({ preferBuiltins: true, exportConditions: ["solid", "node"] }),
             babel({
@@ -42,7 +42,7 @@ export default defineConfig({
         input: "src/entry-client.tsx",
         output: [
           {
-            dir: "public/js",
+            dir: "dist/client",
             format: "esm",
             entryFileNames: '[name].js',
           }

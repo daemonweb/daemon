@@ -1,28 +1,29 @@
-import type { Component } from 'solid-js';
-import Inventory from './components/Inventory';
-import { OpenAPI, InventoryService, Item } from "../clover";
-import { HydrationScript } from 'solid-js/web';
+import type { Component } from "solid-js";
+import { HydrationScript } from "solid-js/web";
+//import { Link, RouteHOC, RouterContext } from "./router";
+import Inventory from "./components/Inventory/Inventory";
 
+// import stub as main package to allowing fetch as you load
 
 
 const App: Component = () => {
   return (
-	<html lang="en">
-		<head>
-			<title>Edgy Veggies</title>
-			<meta charset="utf-8" />
-			<meta name="viewport" content="width=device-width, initial-scale=1" />
-			<meta name="theme-color" content="#000000" />
-			<HydrationScript/>
-		</head>
-		<body>
-			<div id="app">
-				<Inventory />
-			</div>
-		</body>
-		<script type="module" src="js/entry-client.js" async></script>
-	</html>
-    
+    <html lang="en">
+      <head>
+        <title>🔥 Solid SSR 🔥</title>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/styles.css" />
+        <HydrationScript />
+      </head>
+      <body>
+        <div id="app">
+          <Inventory />
+        </div>    
+      
+      </body>
+      <script type="module" src="/entry-client.js" async></script>  
+    </html>
   );
 };
 
