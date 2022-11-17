@@ -1,16 +1,13 @@
-import type { Component } from "solid-js";
-import type { Item } from "../../clover";
-import { useModal } from "./Modal";
 
+import type { Item } from "../../dist/clover";
 
-
-const getItemThumbnailUrl = (itemId: string | undefined): string => {
+function getItemThumbnailUrl(itemId: string | undefined): string {
     return (itemId) 
         ? `https://cloverstatic.com/menu-assets/items/${itemId}_576x576.jpeg`
         : "https://picsum.photos/120"
 }
 
-const getPrice = (price: Number): string => {
+function getPrice(price: Number): string {
     if(price < 100) {
         return "$0.00";
     }
@@ -23,9 +20,7 @@ export type CardProps = {
     item: Item
 }
 
-const Card: Component<CardProps> = (props) => {
-    const modal = useModal();
-
+export default function Card(props: CardProps) {
     return (
         <div class="card card-side h-48 bg-base-100 shadow-xl">
             <figure class="h-full w-48">
@@ -35,11 +30,9 @@ const Card: Component<CardProps> = (props) => {
                 <h2 class="card-title">{props.item.name}</h2>
                 <p>{getPrice(props.item.price)}</p>
                 <div class="card-actions justify-end">
-                    <button class="btn" onClick={() => modal?.actions.open()}>Add To Cart</button>
+                    <button class="btn">Add To Cart</button>
                 </div>
             </div>
         </div>
     );
 };
-
-export default Card;

@@ -1,7 +1,3 @@
-/* @refresh reload */
-import './index.css';
-import { hydrate } from 'solid-js/web';
+import { mount, StartClient } from "solid-start/entry-client";
 
-import App from './App';
-
-hydrate(() => <App />, document);
+mount(() => <StartClient />, document);
