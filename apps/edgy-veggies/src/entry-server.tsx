@@ -22,7 +22,8 @@ app.get("*", async (req, res) => {
     } catch (err) {
       console.error(err);
     } finally {
-      res.send(html);
+        res.setHeader("Content-Type", "text/html");
+      res.end(html);
     }
   });
 

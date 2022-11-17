@@ -16,6 +16,7 @@ export default defineConfig({
     (ssr) ? {
       // SSR build
       target: 'esnext',
+      minify: false,
       rollupOptions: {
         input: "src/entry-server.tsx",
         preserveEntrySignatures: false,
@@ -38,6 +39,7 @@ export default defineConfig({
     } : {
       // Client build
       target: 'esnext',
+      minify: false,
       rollupOptions: {
         input: "src/entry-client.tsx",
         output: [
@@ -47,7 +49,6 @@ export default defineConfig({
             entryFileNames: '[name].js',
           }
         ],
-        
         preserveEntrySignatures: false,
         plugins: [
           nodeResolve({ exportConditions: ["solid"] }),
