@@ -15,7 +15,7 @@ export default function About() {
         >
           solidjs.com
         </A>{" "}
-        to learn how to build Solid apps.
+        to learn how to build Solid apps 2.
       </p>
       <p class="my-4">
         <A href="/" class="text-sky-600 hover:underline">
