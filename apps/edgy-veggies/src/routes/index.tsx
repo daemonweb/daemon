@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main class="container mt-8 mx-auto">
+      <main class="container mt-8 lg:mt-16 mx-auto">
         <Inventory items={items()}/>
       </main>  
     </>

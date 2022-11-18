@@ -10,7 +10,10 @@ export type InventoryProps = {
 export default function Inventory(props) {
 
     return (
-        <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-8">  
+        <div class="
+            grid 
+            gap-8 lg:gap-16
+            grid-cols-1 md:grid-cols-2">  
             <For each={props.items}>
                     {(item) => <Card item={item} />}
             </For>
