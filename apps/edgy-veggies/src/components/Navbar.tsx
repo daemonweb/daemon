@@ -2,9 +2,9 @@ import type { Component } from "solid-js";
 
 const Navbar: Component = () => {
     return (
-        <div class="navbar bg-base-100">
+        <div class="navbar bg-primary">
             <div class="flex-1">
-                <a class="btn btn-ghost normal-case text-xl">Edgy Veggie Co.</a>
+                <h1 class="text-2xl font-light">Edgy Veggie Co.</h1>
             </div>
             <div class="flex-none">
             <div class="form-control">

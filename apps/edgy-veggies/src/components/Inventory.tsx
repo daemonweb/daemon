@@ -10,12 +10,10 @@ export type InventoryProps = {
 export default function Inventory(props) {
 
     return (
-        <div class="container mx-auto">
-            <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-8">  
-                <For each={props.items}>
-                        {(item) => <Card item={item} />}
-                </For>
-            </div>
+        <div class="grid lg:grid-cols-2 md:grid-cols-1 gap-8">  
+            <For each={props.items}>
+                    {(item) => <Card item={item} />}
+            </For>
         </div>
     )
 }

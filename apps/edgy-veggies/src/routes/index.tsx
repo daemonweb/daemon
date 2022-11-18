@@ -21,9 +21,11 @@ export default function Home() {
   const items = useRouteData<typeof routeData>();
 
   return (
-    <main class="text-center mx-auto text-gray-700 p-4">
+    <>
       <Navbar />
-      <Inventory items={items()}/>
-    </main>
+      <main class="container mt-8 mx-auto">
+        <Inventory items={items()}/>
+      </main>  
+    </>
   );
 }

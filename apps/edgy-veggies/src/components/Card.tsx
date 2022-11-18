@@ -23,14 +23,14 @@ export type CardProps = {
 export default function Card(props: CardProps) {
     return (
         <div class="card card-side h-48 bg-base-100 shadow-xl">
-            <figure class="h-full w-48">
+            <figure class="h-full w-80">
                 <div class="bg-cover bg-center" style={`background-image: url('${getItemThumbnailUrl(props.item.id)}');`}></div>
             </figure>
             <div class="card-body">
                 <h2 class="card-title">{props.item.name}</h2>
                 <p>{getPrice(props.item.price)}</p>
                 <div class="card-actions justify-end">
-                    <button class="btn">Add To Cart</button>
+                    <button class="btn btn-primary">Add To Cart</button>
                 </div>
             </div>
         </div>
