@@ -1,6 +1,6 @@
 import { useRouteData } from "solid-start";
 import { createServerData$ } from "solid-start/server";
-import { OpenAPI, InventoryService, Item } from "../../dist/clover";
+import { OpenAPI, InventoryService, Item } from "@clover-platform";
 import Inventory from "~/components/Inventory";
 import Navbar from "~/components/Navbar";
 

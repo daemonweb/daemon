@@ -24,3 +24,7 @@ gitignore
 Thumbs.db
 
 .env
+.env.development
+.env.production
+
+.api

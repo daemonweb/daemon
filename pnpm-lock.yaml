@@ -20,11 +20,13 @@ importers:
       autoprefixer: ^10.4.13
       daisyui: ^2.41.0
       dotenv: ^16.0.3
+      esbuild: ^0.15.14
       eslint: 7.32.0
       eslint-config-custom: workspace:0.0.0
       eslint-plugin-solid: ^0.8.0
       openapi-typescript-codegen: ^0.23.0
       postcss: ^8.4.19
+      rollup: ^3.3.0
       solid-js: ^1.6.2
       solid-start: ^0.2.5
       solid-start-node: ^0.2.5
@@ -45,11 +47,13 @@ importers:
       autoprefixer: 10.4.13_postcss@8.4.19
       daisyui: 2.41.0_2lwn2upnx27dqeg6hqdu7sq75m
       dotenv: 16.0.3
+      esbuild: 0.15.14
       eslint: 7.32.0
       eslint-config-custom: link:../../packages/eslint-config-custom
       eslint-plugin-solid: 0.8.0_77fvizpdb3y4icyeo2mf4eo7em
       openapi-typescript-codegen: 0.23.0
       postcss: 8.4.19
+      rollup: 3.3.0
       solid-start-node: 0.2.5_xnqt2a65zojtexxebxq45opgwu
       solid-start-vercel: 0.2.5_pwel2bd237mbr7ooh5pghdxziu
       tailwindcss: 3.2.4_postcss@8.4.19
@@ -3696,6 +3700,14 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.2
+
+  /rollup/3.3.0:
+    resolution: {integrity: sha512-wqOV/vUJCYEbWsXvwCkgGWvgaEnsbn4jxBQWKpN816CqsmCimDmCNJI83c6if7QVD4v/zlyRzxN7U2yDT5rfoA==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
 
   /route-sort/1.0.0:
     resolution: {integrity: sha512-SFgmvjoIhp5S4iBEDW3XnbT+7PRuZ55oRuNjY+CDB1SGZkyCG9bqQ3/dhaZTctTBYMAvDxd2Uy9dStuaUfgJqQ==}

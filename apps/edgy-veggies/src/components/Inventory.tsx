@@ -1,6 +1,6 @@
 
 import { For } from "solid-js/web";
-import { Item } from "../../dist/clover";
+import { Item } from "@clover-platform";
 import Card from "~/components/Card";
 
 export type InventoryProps = {

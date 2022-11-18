@@ -1,5 +1,5 @@
 
-import type { Item } from "../../dist/clover";
+import type { Item }  from "@clover-platform";
 
 function getItemThumbnailUrl(itemId: string | undefined): string {
     return (itemId) 
