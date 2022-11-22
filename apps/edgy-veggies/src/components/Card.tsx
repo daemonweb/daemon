@@ -1,5 +1,6 @@
 
 import type { Item }  from "@clover-platform";
+import { useModal } from "./Modal";
 
 function getItemThumbnailUrl(itemId: string | undefined): string {
     return (itemId) 
@@ -21,6 +22,9 @@ export type CardProps = {
 }
 
 export default function Card(props: CardProps) {
+
+    const modal = useModal();
+
     return (
         <div class="
             card card-side 
@@ -47,7 +51,9 @@ export default function Card(props: CardProps) {
                 </h2>
                 <p>{getPrice(props.item.price)}</p>
                 <div class="card-actions justify-end">
-                    <button class="btn btn-primary">Add To Cart</button>
+                    <button 
+                        class="btn btn-primary"
+                        onClick={() => modal.actions.open()}>Add To Cart</button>
                 </div>
             </div>
         </div>

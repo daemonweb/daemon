@@ -3,6 +3,7 @@ import { createServerData$ } from "solid-start/server";
 import { OpenAPI, InventoryService, Item } from "@clover-platform";
 import Inventory from "~/components/Inventory";
 import Navbar from "~/components/Navbar";
+import { Modal, ModalProvider } from "~/components/Modal";
 
 
 export function routeData() {
@@ -21,11 +22,12 @@ export default function Home() {
   const items = useRouteData<typeof routeData>();
 
   return (
-    <>
+    <ModalProvider>
       <Navbar />
       <main class="container mt-8 lg:mt-16 mx-auto">
         <Inventory items={items()}/>
-      </main>  
-    </>
+      </main> 
+      <Modal /> 
+    </ModalProvider>
   );
 }

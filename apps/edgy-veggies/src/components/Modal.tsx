@@ -64,10 +64,10 @@ export const Modal: Component = () => {
 
     return (
         <>
-            <input type="checkbox" id="my-modal-4" class="modal-toggle" />
-            <label for="my-modal-4" class={`modal cursor-pointer ${(modal.state.isOpen) ? "modal-open" : ""}`}>
+            <input type="checkbox" class="modal-toggle" />
+            <label class={`modal cursor-pointer ${(modal.state.isOpen) ? "modal-open" : ""}`}>
                 <label class="modal-box relative" for="">
-                    <label for="my-modal-4" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                    <label onClick={() => modal.actions.close()} class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
                     <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
                 </label>
