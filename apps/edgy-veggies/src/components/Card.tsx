@@ -1,6 +1,7 @@
 
 import type { Item }  from "@clover-platform";
-import { useModal } from "./Modal";
+import { useCart } from "./CartProvider";
+import { useModal } from "./ModalProvider";
 
 function getItemThumbnailUrl(itemId: string | undefined): string {
     return (itemId) 
@@ -22,8 +23,8 @@ export type CardProps = {
 }
 
 export default function Card(props: CardProps) {
-
-    const modal = useModal();
+    const cart = useCart();
+    console.log("card", props.item);
 
     return (
         <div class="
@@ -43,17 +44,22 @@ export default function Card(props: CardProps) {
                 card-normal md:card-compact xl:card-normal 
                 w-1/2 md:w-3/5 lg:w-1/2 xl:w-2/5
             ">
-                <h2 class="
+                <span class="
                     card-title 
+                    font-normal
                     text-xl sm:text-2xl md:text-base lg:text-lg xl:text-xl
                 ">
                     {props.item.name}
-                </h2>
+                </span>
+                
                 <p>{getPrice(props.item.price)}</p>
-                <div class="card-actions justify-end">
+                <div class="card-actions justify-end align-center">
+                    <span class="text-md">-</span>
+                    <span class="text-md">{cart.actions.getItemCount(props.item.name)}</span>
+                    <span class="text-md">+</span>
                     <button 
                         class="btn btn-primary"
-                        onClick={() => modal.actions.open()}>Add To Cart</button>
+                        onClick={() => cart.actions.add(props.item)}>Add To Cart</button>
                 </div>
             </div>
         </div>

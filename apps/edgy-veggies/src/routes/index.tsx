@@ -1,9 +1,12 @@
 import { useRouteData } from "solid-start";
 import { createServerData$ } from "solid-start/server";
-import { OpenAPI, InventoryService, Item } from "@clover-platform";
+import { OpenAPI, InventoryService, Item, MerchantsService } from "@clover-platform";
 import Inventory from "~/components/Inventory";
 import Navbar from "~/components/Navbar";
-import { Modal, ModalProvider } from "~/components/Modal";
+import { Modal } from "~/components/Modal";
+import { ModalProvider } from "~/components/ModalProvider";
+import { CartProvider } from "~/components/CartProvider";
+import Hero from "~/components/Hero";
 
 
 export function routeData() {
@@ -23,11 +26,13 @@ export default function Home() {
 
   return (
     <ModalProvider>
+    <CartProvider>
       <Navbar />
       <main class="container mt-8 lg:mt-16 mx-auto">
         <Inventory items={items()}/>
       </main> 
       <Modal /> 
+    </CartProvider>
     </ModalProvider>
   );
 }

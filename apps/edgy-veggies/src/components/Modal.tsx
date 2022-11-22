@@ -1,48 +1,7 @@
-import { Component, createEffect,onMount, onCleanup, createContext, Context, useContext, JSX, on } from "solid-js";
-import { createStore } from "solid-js/store";
+import { createEffect, on } from "solid-js";
+import { useModal } from "./ModalProvider";
 
-
-export const ModalContext = createContext<ModalContextModel>();
-
-type ModalState = {
-    isOpen: boolean,
-    content?: JSX.Element
-}
-
-export interface ModalContextModel {
-    state: ModalState,
-    actions: ModalActions
-}
-
-export interface ModalActions {
-    open: (content?: JSX.Element) => void,
-    close: () => void
-}
-
-type ModalProviderProps = {
-    isOpen?: boolean,
-    children?: JSX.Element
-}
-
-export const ModalProvider = (props: ModalProviderProps) => {
-    const [state, setState] = createStore<ModalState>({isOpen: props.isOpen || false});
-    const value: ModalContextModel = {
-        state:state,
-        actions: {
-            open(component: JSX.Element) {
-                setState({isOpen: true, content: component});
-            },
-            close() { setState({isOpen: false}); }
-        }
-    }
-    return (
-        <ModalContext.Provider value={value}>
-            {props.children}
-        </ModalContext.Provider>
-    );
-}
-
-export const Modal: Component = () => {
+export function Modal() {
     const modal = useModal();
     let modalBoxRef;
 
@@ -102,7 +61,3 @@ export const Modal: Component = () => {
         </>
     );
 };
-
-export const useModal = ():ModalContextModel | undefined => {
-    return useContext(ModalContext);
-}
