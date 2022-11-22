@@ -1,8 +1,7 @@
-import { Component, createSignal, createContext, Context, useContext, JSX } from "solid-js";
+import { Component, createEffect,onMount, onCleanup, createContext, Context, useContext, JSX, on } from "solid-js";
 import { createStore } from "solid-js/store";
 
-// TODO: Any way I can avoid initiallizing this here while still avoiding the "| undefined" type?
-//const model:ModalContextModel = {state: {isOpen: false}, actions: {open:()=>{},close:()=>{},toggle:()=>{}}};
+
 export const ModalContext = createContext<ModalContextModel>();
 
 type ModalState = {
@@ -17,8 +16,7 @@ export interface ModalContextModel {
 
 export interface ModalActions {
     open: (content?: JSX.Element) => void,
-    close: () => void,
-    toggle: () => void
+    close: () => void
 }
 
 type ModalProviderProps = {
@@ -32,23 +30,9 @@ export const ModalProvider = (props: ModalProviderProps) => {
         state:state,
         actions: {
             open(component: JSX.Element) {
-                console.log("open modal");
                 setState({isOpen: true, content: component});
-                document.body.style.overflow = "hidden";
             },
-            close() {
-                console.log("close modal");
-                setState({isOpen: false});
-                document.body.style.overflow = "unset";
-            },
-            toggle() {
-                console.log("toggle modal");
-                setState({
-                    ...state,
-                    isOpen: !state.isOpen
-                });
-                document.body.style.overflow = (state.isOpen) ? "unset" : "hidden";
-            }
+            close() { setState({isOpen: false}); }
         }
     }
     return (
@@ -59,14 +43,57 @@ export const ModalProvider = (props: ModalProviderProps) => {
 }
 
 export const Modal: Component = () => {
-
     const modal = useModal();
+    let modalBoxRef;
+
+
+    function outsideClickHandler(e) {
+        console.log("click target", e.target);
+        console.log("modal box", modalBoxRef);
+
+        let targetEl = e.target;
+        do {
+            if(targetEl == modalBoxRef) {
+                // Inside Click
+                return;
+            }
+
+            targetEl = targetEl.parentNode;
+        } while(targetEl);
+
+        // Outside Click
+        modal.actions.close();
+    }
+
+    function onOpen() {
+        document.body.style.overflow = "hidden";
+        document.addEventListener("click", outsideClickHandler);
+    }
+
+    function onClose() {
+        document.body.style.overflow = "unset";
+        document.removeEventListener("click", outsideClickHandler);
+    }
+
+    function onOpenChange(isOpen, prevIsOpen) {
+        console.log("onModalToggle", isOpen, prevIsOpen);
+        if(isOpen && !prevIsOpen) {
+            onOpen()
+        } else if(!isOpen && prevIsOpen) {
+            onClose();
+        }
+    }
+
+    createEffect(
+        on(() => modal.state.isOpen, 
+        onOpenChange
+    ));
 
     return (
         <>
             <input type="checkbox" class="modal-toggle" />
             <label class={`modal cursor-pointer ${(modal.state.isOpen) ? "modal-open" : ""}`}>
-                <label class="modal-box relative" for="">
+                <label ref={modalBoxRef} class="modal-box relative" for="">
                     <label onClick={() => modal.actions.close()} class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
                     <h3 class="text-lg font-bold">Congratulations random Internet user!</h3>
                     <p class="py-4">You've been selected for a chance to get one year of subscription to use Wikipedia for free!</p>
@@ -79,27 +106,3 @@ export const Modal: Component = () => {
 export const useModal = ():ModalContextModel | undefined => {
     return useContext(ModalContext);
 }
-
-// export type TriggerModalProps = {
-//     children?: any;
-// }
-
-// export const TriggerModal: Component<TriggerModalProps> = (props) => {
-
-//     const [canScroll, setCanScroll] = createSignal(true);
-
-//     const toggleScroll = () => { 
-//         setCanScroll(!canScroll());
-//         if(!canScroll()) {
-//             document.body.style.overflow = "hidden";
-//         } else {
-//             document.body.style.overflow = "unset";
-//         }
-//     }
-
-//     return (
-//         <label for="my-modal-4" class="btn" onClick={toggleScroll}>
-//             {props.children}
-//         </label>
-//     );
-// }
