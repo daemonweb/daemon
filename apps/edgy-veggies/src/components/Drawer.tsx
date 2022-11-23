@@ -1,7 +1,6 @@
 import { For } from "solid-js";
 import { Cart } from "./Cart";
 import { useCart } from "./CartProvider";
-import { NAVBAR_HEIGHT } from "./Navbar";
 
 
 const DAISY_DRAWER_ID = "drawer-id-1";
@@ -14,7 +13,7 @@ export function ToggleDrawer(props) {
 
 export function DrawerSide(props) {
     return (
-        <div class={`drawer-side h-screen -${NAVBAR_HEIGHT}`}>
+        <div class={`drawer-side h-screen`}>
             <label for={DAISY_DRAWER_ID} class="drawer-overlay"></label> 
             <ul class="menu p-4 w-80 bg-base-100 text-base-content">
                 {props.children}
