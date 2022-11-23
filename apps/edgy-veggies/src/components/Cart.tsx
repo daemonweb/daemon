@@ -1,4 +1,4 @@
-import { OrderCart, OrdersService } from "@clover-platform";
+import { OrderCart, OrdersService, LineItem } from "@clover-platform";
 import { For } from "solid-js";
 import server$ from 'solid-start/server'
 import CartItem from "./CartItem";
@@ -26,19 +26,39 @@ export function CartStatus() {
     );
 };
 
-const onCheckout = server$(async (orderCart: OrderCart) => {
+const onCheckout = server$(async (orderCart: any) => {
     const res = await OrdersService.orderCheckoutAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart });
     console.log("res", res);
+    return res;
     //console.log("checkout", orderCart);
 });
+
+function groupLineItems(lineItems: LineItem[]) {
+    return lineItems.reduce((acc, item) => {
+        let groupItem = acc.find(e => e.item.id === item.id);
+        if(!groupItem) {
+            groupItem = {
+                item: item,
+                quantity: 0,
+                total: 0
+            }
+            acc.push(groupItem);
+        }
+
+        // TODO: ok to modify object in array?
+        groupItem.quantity++;
+        groupItem.total += item.price;
+        return acc;
+    }, [] as any);
+}
 
 export function Cart() {
     const cart = useCart();
     return (
         <div class="flex flex-col justify-between h-full">
-            <For each={cart.state.lineItems}>
-                {(item) => (
-                    <CartItem name={item.name} price={item.price} count={1} />
+            <For each={groupLineItems(cart.state.lineItems)}>
+                {(group) => (
+                    <CartItem name={group.item.name} price={group.total} count={group.quantity} />
                 )}
             </For>
             <span class="text-info">
@@ -62,7 +82,6 @@ export function Cart() {
 //     orderType?: OrderType;
 //     groupLineItems: false;
 // };
-
 
 
 // import type { Component } from "solid-js";
