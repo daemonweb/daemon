@@ -1,12 +1,14 @@
 import { createContext, useContext } from "solid-js";
 import { createStore } from "solid-js/store";
-import { Discount, LineItem, OrderType } from "@clover-platform";
+import { Discount, LineItem, OrderCart, OrderType } from "@clover-platform";
 
 
 type CartState = {
     lineItems: LineItem[],
-    discounts: Discount[],
-    orderType: OrderType
+    discounts?: Discount[],
+    orderType?: OrderType
+    note?: string;
+    groupLineItems?: false;
 }
 
 export interface CartContextModel {
@@ -18,13 +20,13 @@ export interface CartActions {
     add(items: LineItem | LineItem[]): void,
     remove(item: LineItem | LineItem[]): void,
     getItemCount(lineItem): number,
+    createOrder(): OrderCart
 }
-
 
 const CartContext = createContext<CartContextModel>();
 
 export function CartProvider(props) {
-    const [state, setState] = createStore<CartState>({lineItems: [], discounts: [], orderType: {}});
+    const [state, setState] = createStore<CartState>({lineItems: []});
     const value: CartContextModel = {
         state:state,
         actions: {
@@ -44,6 +46,14 @@ export function CartProvider(props) {
             },
             getItemCount(itemName) {
                 return state.lineItems.filter(item => item.name === itemName).length;
+            },
+            createOrder() {
+                return {
+                    note: state.note,
+                    lineItems: state.lineItems,
+                    orderType: state.orderType,
+                    groupLineItems: false
+                }
             }
         }
     }

@@ -1,4 +1,6 @@
+import { MerchantsService, OrderCart, OrdersService } from "@clover-platform";
 import { For } from "solid-js";
+import server$ from 'solid-start/server'
 import { useCart } from "./CartProvider";
 
 export function CartStatus() {
@@ -23,10 +25,16 @@ export function CartStatus() {
     );
 };
 
+// const onCheckout = server$(async (orderCart: OrderCart) => {
+//     const res = await OrdersService.orderCheckoutAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart });
+//     console.log("checkout", res);
+//     return res;
+// })
+
 export function Cart() {
     const cart = useCart();
     return (
-        <>
+        <div class="flex flex-col justify-between h-full">
             <For each={cart.state.lineItems}>
                 {(item) => (
                     <span class="font-bold text-lg">{item.name}</span>
@@ -37,10 +45,22 @@ export function Cart() {
                     cart.state.lineItems.reduce((acc, item) => { return acc+item.price; }, 0)   
                 }
             </span>
-        </>
-                    
+            <button class="btn btn-primary" onClick={() => console.log("on checkout")}>Continue To Checkout</button>
+        </div>              
     )
 }
+
+
+// Use /atomic_order/checkouts to build the order
+// Call /atomic_order/orders to create the order
+// Call v1/orders/{orderId}/pay of the Ecommerce API to automatically charge the total order amount and to include a tip
+
+// export type OrderCart = {
+//     note?: string;
+//     lineItems?: Array<LineItem>;
+//     orderType?: OrderType;
+//     groupLineItems: false;
+// };
 
 
 

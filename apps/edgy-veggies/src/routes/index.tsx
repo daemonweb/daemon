@@ -22,7 +22,8 @@ export function routeData() {
         //console.log("hoursSet", hoursSet.tuesday);
         const address = await MerchantsService.merchantGetMerchantAddress(process.env.CLOVER_MERCHANT_ID);
         //console.log("address", address);
-
+        const orderTypes = await MerchantsService.merchantGetOrderTypes(process.env.CLOVER_MERCHANT_ID);
+        //console.log("orderTypes", orderTypes);
 
         const items = (await InventoryService.inventoryGetItems(
                 process.env.CLOVER_MERCHANT_ID
@@ -51,7 +52,7 @@ export default function Home() {
         <main class="container mt-8 lg:mt-16 mx-auto">
           <Inventory items={items()}/>
         </main> 
-        
+
       </Drawer> 
       
     <Footer />
