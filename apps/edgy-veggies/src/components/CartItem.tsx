@@ -1,4 +1,4 @@
-export type CardItemProps {
+export type CardItemProps = {
     name: string,
     price: number,
     count: number,
@@ -6,7 +6,7 @@ export type CardItemProps {
 
 export default function CartItem(props: CardItemProps) {
     return (
-        <div class="flex justify-between flex-nowrap">
+        <div class="flex justify-between flex-nowrap h-12">
             <div class="flex flex-col">
                 <span>{props.name}</span>
                 <span>x{props.count}</span>

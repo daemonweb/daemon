@@ -20,7 +20,7 @@ export interface CartActions {
     add(items: LineItem | LineItem[]): void,
     remove(item: LineItem | LineItem[]): void,
     getItemCount(lineItem): number,
-    createOrder(): OrderCart
+    getOrder(): OrderCart
 }
 
 const CartContext = createContext<CartContextModel>();
@@ -47,11 +47,20 @@ export function CartProvider(props) {
             getItemCount(itemName) {
                 return state.lineItems.filter(item => item.name === itemName).length;
             },
-            createOrder() {
+            getOrder() {
                 return {
                     note: state.note,
-                    lineItems: state.lineItems,
-                    orderType: state.orderType,
+                    lineItems: state.lineItems.map(item => {
+                        return {
+                            id: item.id,
+                            name: item.name,
+                            alternateName: item.alternateName,
+                            price: item.price,
+                            itemCode: item.itemCode,
+                            discounts: item.discounts,
+                            taxRates: item.taxRates,
+                        }
+                    }),
                     groupLineItems: false
                 }
             }
@@ -67,3 +76,14 @@ export function CartProvider(props) {
 export const useCart = (): CartContextModel => {
     return useContext(CartContext);
 }
+
+// {
+//     item: {id: item.id},
+//     name: item.name,
+//     alternateName: item.alternateName,
+//     price: item.price,
+//     itemCode: item.itemCode,
+//     discounts: {elements:item.discounts},
+//     taxRates: {elements:item.taxRates},
+
+// }

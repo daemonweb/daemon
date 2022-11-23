@@ -1,6 +1,7 @@
-import { MerchantsService, OrderCart, OrdersService } from "@clover-platform";
+import { OrderCart, OrdersService } from "@clover-platform";
 import { For } from "solid-js";
 import server$ from 'solid-start/server'
+import CartItem from "./CartItem";
 import { useCart } from "./CartProvider";
 
 export function CartStatus() {
@@ -25,11 +26,11 @@ export function CartStatus() {
     );
 };
 
-// const onCheckout = server$(async (orderCart: OrderCart) => {
-//     const res = await OrdersService.orderCheckoutAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart });
-//     console.log("checkout", res);
-//     return res;
-// })
+const onCheckout = server$(async (orderCart: OrderCart) => {
+    const res = await OrdersService.orderCheckoutAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart });
+    console.log("res", res);
+    //console.log("checkout", orderCart);
+});
 
 export function Cart() {
     const cart = useCart();
@@ -37,7 +38,7 @@ export function Cart() {
         <div class="flex flex-col justify-between h-full">
             <For each={cart.state.lineItems}>
                 {(item) => (
-                    <span class="font-bold text-lg">{item.name}</span>
+                    <CartItem name={item.name} price={item.price} count={1} />
                 )}
             </For>
             <span class="text-info">
@@ -45,7 +46,7 @@ export function Cart() {
                     cart.state.lineItems.reduce((acc, item) => { return acc+item.price; }, 0)   
                 }
             </span>
-            <button class="btn btn-primary" onClick={() => console.log("on checkout")}>Continue To Checkout</button>
+            <button class="btn btn-primary" onClick={() => onCheckout(cart.actions.getOrder())}>Continue To Checkout</button>
         </div>              
     )
 }

@@ -9,37 +9,37 @@ import Hero from "~/components/Hero";
 import Footer from "~/components/Footer";
 import { Drawer } from "~/components/Drawer";
 import { Cart } from "~/components/Cart";
+import { createSignal } from "solid-js";
 
 
 export function routeData() {
-  
     return createServerData$(async () => {
         OpenAPI.BASE = process.env.CLOVER_BASE_URL;
         OpenAPI.TOKEN = process.env.CLOVER_API_KEY;
-        const merchant = await MerchantsService.merchantGetMerchant(process.env.CLOVER_MERCHANT_ID);
+        console.log("token", OpenAPI.TOKEN);
+        console.log("base", OpenAPI.BASE);
+        console.log("merchant id", process.env.CLOVER_MERCHANT_ID)
+        //const merchant = await MerchantsService.merchantGetMerchant(process.env.CLOVER_MERCHANT_ID);
         //console.log("merchant", merchant.name);
-        const hoursSet = await MerchantsService.merchantGetAllMerchantOpeningHours(process.env.CLOVER_MERCHANT_ID);
+        //const hoursSet = await MerchantsService.merchantGetAllMerchantOpeningHours(process.env.CLOVER_MERCHANT_ID);
         //console.log("hoursSet", hoursSet.tuesday);
-        const address = await MerchantsService.merchantGetMerchantAddress(process.env.CLOVER_MERCHANT_ID);
+        //const address = await MerchantsService.merchantGetMerchantAddress(process.env.CLOVER_MERCHANT_ID);
         //console.log("address", address);
-        const orderTypes = await MerchantsService.merchantGetOrderTypes(process.env.CLOVER_MERCHANT_ID);
+        //const orderTypes = await MerchantsService.merchantGetOrderTypes(process.env.CLOVER_MERCHANT_ID);
         //console.log("orderTypes", orderTypes);
 
-        const items = (await InventoryService.inventoryGetItems(
+        return (await InventoryService.inventoryGetItems(
                 process.env.CLOVER_MERCHANT_ID
             ))
             .elements
             .filter((item: Item) => item.autoManage) as Item[];
-        const item = await InventoryService.inventoryGetItem(process.env.CLOVER_MERCHANT_ID, items[0].id);
-        //console.log("item", item);
-
-        return items;
     });
     
 }
 
 export default function Home() {
   const items = useRouteData<typeof routeData>();
+  //const [items] = createSignal([{name: "test", price: 300, id: "test"}]);
 
   return (
     <ModalProvider>

@@ -1,8 +1,3 @@
-import { For } from "solid-js";
-import { Cart } from "./Cart";
-import { useCart } from "./CartProvider";
-
-
 const DAISY_DRAWER_ID = "drawer-id-1";
 
 export function ToggleDrawer(props) {
