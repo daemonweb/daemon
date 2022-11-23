@@ -5,11 +5,7 @@ export function Modal() {
     const modal = useModal();
     let modalBoxRef;
 
-
     function outsideClickHandler(e) {
-        console.log("click target", e.target);
-        console.log("modal box", modalBoxRef);
-
         let targetEl = e.target;
         do {
             if(targetEl == modalBoxRef) {
@@ -35,7 +31,6 @@ export function Modal() {
     }
 
     function onOpenChange(isOpen, prevIsOpen) {
-        console.log("onModalToggle", isOpen, prevIsOpen);
         if(isOpen && !prevIsOpen) {
             onOpen()
         } else if(!isOpen && prevIsOpen) {

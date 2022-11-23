@@ -1,20 +1,17 @@
-import type { Component } from "solid-js";
-import { Cart } from "./Cart";
+import { CartStatus } from "./Cart";
+import { ToggleDrawer } from "./Drawer";
 
-const Navbar: Component = () => {
+export default function Navbar() {
     return (
         <div class="navbar bg-primary">
             <div class="flex-1">
-                <h1 class="text-2xl font-light">Edgy Veggie Co.</h1>
+                <h1 class="text-2xl font-light">[Logo]</h1>
             </div>
             <div class="flex-none">
-                <div class="form-control">
-                    <input type="text" placeholder="Search" class="input input-bordered" />
-                </div>
-                <Cart />  
+                <ToggleDrawer>
+                    <CartStatus />  
+                </ToggleDrawer>
             </div>
         </div>
     )
 }
-
-export default Navbar;

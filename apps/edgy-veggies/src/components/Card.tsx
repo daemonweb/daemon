@@ -1,7 +1,6 @@
 
 import type { Item }  from "@clover-platform";
 import { useCart } from "./CartProvider";
-import { useModal } from "./ModalProvider";
 
 function getItemThumbnailUrl(itemId: string | undefined): string {
     return (itemId) 
@@ -24,7 +23,6 @@ export type CardProps = {
 
 export default function Card(props: CardProps) {
     const cart = useCart();
-    console.log("card", props.item);
 
     return (
         <div class="

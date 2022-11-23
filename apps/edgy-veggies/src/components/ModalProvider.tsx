@@ -2,7 +2,6 @@ import { createContext, useContext, JSX } from "solid-js";
 import { createStore } from "solid-js/store";
 
 
-
 type ModalState = {
     isOpen: boolean,
     content?: JSX.Element
@@ -42,7 +41,6 @@ export function ModalProvider(props: ModalProviderProps) {
         </ModalContext.Provider>
     );
 }
-
 
 export function useModal(): ModalContextModel {
     return useContext(ModalContext);

@@ -20,8 +20,8 @@ export interface CartActions {
     getItemCount(lineItem): number,
 }
 
-const CartContext = createContext<CartContextModel>();
 
+const CartContext = createContext<CartContextModel>();
 
 export function CartProvider(props) {
     const [state, setState] = createStore<CartState>({lineItems: [], discounts: [], orderType: {}});
