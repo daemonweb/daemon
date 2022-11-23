@@ -8,9 +8,9 @@ export function ToggleDrawer(props) {
 
 export function DrawerSide(props) {
     return (
-        <div class={`drawer-side h-screen`}>
+        <div class="drawer-side">
             <label for={DAISY_DRAWER_ID} class="drawer-overlay"></label> 
-            <ul class="menu p-4 w-80 bg-base-100 text-base-content">
+            <ul class="menu w-80 bg-base-100 text-base-content">
                 {props.children}
             </ul>
         </div>
@@ -19,7 +19,7 @@ export function DrawerSide(props) {
 
 export function Drawer(props) {
     return (
-        <div class="drawer drawer-end drawer-mobile ">
+        <div class="drawer drawer-end drawer-mobile h-[calc(100vh-theme(height.12))]">
             <input id={DAISY_DRAWER_ID} type="checkbox" class="drawer-toggle" />
             <div class="drawer-content">
                 {props.children}
@@ -28,7 +28,6 @@ export function Drawer(props) {
             <DrawerSide>
                 {props.sideContent}
             </DrawerSide>
-  
         </div>
     )
 }

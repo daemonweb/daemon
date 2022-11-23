@@ -55,7 +55,7 @@ function groupLineItems(lineItems: LineItem[]) {
 export function Cart() {
     const cart = useCart();
     return (
-        <div class="flex flex-col justify-between h-full">
+        <div class="flex flex-col justify-between">
             <For each={groupLineItems(cart.state.lineItems)}>
                 {(group) => (
                     <CartItem name={group.item.name} price={group.total} count={group.quantity} />
