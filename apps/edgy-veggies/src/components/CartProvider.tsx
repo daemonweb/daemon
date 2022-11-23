@@ -20,7 +20,7 @@ export interface CartActions {
     add(items: LineItem | LineItem[]): void,
     remove(item: LineItem | LineItem[]): void,
     getItemCount(lineItem): number,
-    getOrder(): OrderCart
+    getOrder()
 }
 
 const CartContext = createContext<CartContextModel>();
@@ -53,12 +53,13 @@ export function CartProvider(props) {
                     lineItems: state.lineItems.map(item => {
                         return {
                             id: item.id,
-                            name: item.name,
-                            alternateName: item.alternateName,
+                            item: { id: item.id},
+                            // name: item.name,
+                            // alternateName: item.alternateName,
                             price: item.price,
-                            itemCode: item.itemCode,
-                            discounts: item.discounts,
-                            taxRates: item.taxRates,
+                            // itemCode: item.itemCode,
+                            // discounts: item.discounts,
+                            // taxRates: item.taxRates,
                         }
                     }),
                     groupLineItems: false

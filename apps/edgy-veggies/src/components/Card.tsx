@@ -1,4 +1,4 @@
-
+import { HiSolidMinusCircle, HiSolidPlusCircle, HiSolidCurrencyDollar } from "solid-icons/hi"
 import type { Item }  from "@clover-platform";
 import { useCart } from "./CartProvider";
 
@@ -50,11 +50,11 @@ export default function Card(props: CardProps) {
                     {props.item.name}
                 </span>
                 
-                <p>{getPrice(props.item.price)}</p>
+                <HiSolidCurrencyDollar /><p>{getPrice(props.item.price)}</p>
                 <div class="card-actions justify-end align-center">
-                    <span class="text-md">-</span>
+                    <HiSolidMinusCircle />
                     <span class="text-md">{cart.actions.getItemCount(props.item.name)}</span>
-                    <span class="text-md">+</span>
+                    <HiSolidPlusCircle />
                     <button 
                         class="btn btn-primary"
                         onClick={() => cart.actions.add(props.item)}>Add To Cart</button>

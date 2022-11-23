@@ -28,6 +28,7 @@ importers:
       openapi-typescript-codegen: ^0.23.0
       postcss: ^8.4.19
       rollup: ^3.3.0
+      solid-icons: ^1.0.4
       solid-js: ^1.6.2
       solid-start: ^0.2.5
       solid-start-node: ^0.2.5
@@ -40,6 +41,7 @@ importers:
     dependencies:
       '@solidjs/meta': 0.28.2_solid-js@1.6.2
       '@solidjs/router': 0.5.0_solid-js@1.6.2
+      solid-icons: 1.0.4_solid-js@1.6.2
       solid-js: 1.6.2
       solid-start: 0.2.5_qx3wzgkguxvthvssnutneqxbxi
       undici: 5.12.0
@@ -3817,6 +3819,15 @@ packages:
       ansi-styles: 4.3.0
       astral-regex: 2.0.0
       is-fullwidth-code-point: 3.0.0
+
+  /solid-icons/1.0.4_solid-js@1.6.2:
+    resolution: {integrity: sha512-gJTp4in3+OYCs9WvDkSLt4Los2unR3Uoder8wjh15GsfP20xiNOLfPTJllXmn+fI8+k3x7bRYtLGIgWd9fUQug==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
+      solid-js: 1.6.2
+    dev: false
 
   /solid-js/1.6.2:
     resolution: {integrity: sha512-AZBsj+Yn1xliniTTeuQKG9V7VQVkQ8lZmSKvBjpcVSoZeF7nvt/N5f7Kcsx6QSufioa2YgvBjkIiA0cM0qhotw==}
