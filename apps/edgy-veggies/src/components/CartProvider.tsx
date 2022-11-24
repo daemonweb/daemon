@@ -1,6 +1,7 @@
 import { createContext, useContext } from "solid-js";
 import { createStore } from "solid-js/store";
-import { Discount, LineItem, OrderCart, OrderType } from "@clover-platform";
+import server$ from "solid-start/server";
+import { Discount, LineItem, OrderCart, OrdersService, OrderType } from "@clover-platform";
 
 
 type CartState = {
@@ -8,6 +9,7 @@ type CartState = {
     discounts?: Discount[],
     orderType?: OrderType
     note?: string;
+    quote?: any;
     groupLineItems?: false;
 }
 
@@ -20,7 +22,8 @@ export interface CartActions {
     add(items: LineItem | LineItem[]): void,
     remove(item: LineItem | LineItem[]): void,
     getItemCount(lineItem): number,
-    getOrder()
+    getQuote(),
+    createOrder()
 }
 
 const CartContext = createContext<CartContextModel>();
@@ -47,24 +50,8 @@ export function CartProvider(props) {
             getItemCount(itemName) {
                 return state.lineItems.filter(item => item.name === itemName).length;
             },
-            getOrder() {
-                return {
-                    note: state.note,
-                    lineItems: state.lineItems.map(item => {
-                        return {
-                            id: item.id,
-                            item: { id: item.id},
-                            // name: item.name,
-                            // alternateName: item.alternateName,
-                            price: item.price,
-                            // itemCode: item.itemCode,
-                            // discounts: item.discounts,
-                            // taxRates: item.taxRates,
-                        }
-                    }),
-                    groupLineItems: false
-                }
-            }
+            getQuote: getQuote(state, setState),
+            createOrder: createCheckout
         }
     }
     return (
@@ -77,6 +64,88 @@ export function CartProvider(props) {
 export const useCart = (): CartContextModel => {
     return useContext(CartContext);
 }
+
+
+
+const checkoutOrder = server$(async (orderCart: any) => {
+    return await OrdersService.orderCheckoutAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart });
+});
+
+function itemsToOrderCart(lineItems: LineItem[]): OrderCart {
+    return {
+        note: "",
+        lineItems: lineItems.map(item => {
+            return {
+                id: item.id,
+                item: { id: item.id},
+                // name: item.name,
+                // alternateName: item.alternateName,
+                price: item.price,
+                // itemCode: item.itemCode,
+                // discounts: item.discounts,
+                // taxRates: item.taxRates,
+            }
+        }),
+        groupLineItems: false
+    }
+}
+
+
+const getQuote = (state, setState) => async () => {
+    const items = state.lineItems;
+    const orderCart = itemsToOrderCart(items);
+    const res = await checkoutOrder(orderCart);
+    console.log("res", res);
+    setState({quote: res});
+    return res;
+}
+
+// const cloverCreateOrder = async (orderCart) => {
+//     return await OrdersService.orderCreateAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart: orderCart });
+// }
+
+// const createOrder = (state, setState) => async () => {
+//     const items = state.lineItems;
+//     const orderCart = cloverCreateOrder(items);
+//     const res = await checkoutOrder(orderCart);
+//     console.log("order", res);
+// }
+
+const createCheckout = (server$(async () => {
+    const res = await fetch('https://sandbox.dev.clover.com/invoicingcheckoutservice/v1/checkouts', {
+        method: 'POST',
+        headers: {
+            'X-Clover-Merchant-Id': process.env.CLOVER_MERCHANT_ID,
+            'Authorization': 'Bearer ' + process.env.CLOVER_API_KEY,
+            'Content-Type': 'application/json' 
+        },
+        body: JSON.stringify({
+            "customer" : {
+                "email": "josh.elias@pm.me",    
+                "firstName" : "Example",
+                "lastName": "Customer",
+                "phoneNumber": "223-555-0002"
+            },
+            "shoppingCart" : {
+                "lineItems": [
+                    {
+                        "name": "Apple",
+                        "unitQty": 1,
+                        "price": 100
+                    },
+                    {
+                        "name": "Orange",
+                        "unitQty": 2,
+                        "price": 75
+                    }
+                ]
+            }
+        })
+    });
+    const data = await res.json();
+    return data;
+}));
+
 
 // {
 //     item: {id: item.id},

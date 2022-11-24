@@ -1,8 +1,9 @@
 import { OrderCart, OrdersService, LineItem } from "@clover-platform";
-import { For } from "solid-js";
-import server$ from 'solid-start/server'
+import { createSignal, For } from "solid-js";
+import server$, { redirect } from 'solid-start/server'
 import CartItem from "./CartItem";
 import { useCart } from "./CartProvider";
+import Customer from "./Customer";
 
 export function CartStatus() {
     const cart = useCart();
@@ -26,12 +27,15 @@ export function CartStatus() {
     );
 };
 
-const onCheckout = server$(async (orderCart: any) => {
-    const res = await OrdersService.orderCheckoutAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart });
-    console.log("res", res);
-    return res;
-    //console.log("checkout", orderCart);
-});
+async function onCheckout(cart, setState) {
+    if(cart.state.lineItems.length === 0)
+        return;
+
+    await cart.actions.getQuote();
+    setState(CartStage.Review);
+
+};
+
 
 function groupLineItems(lineItems: LineItem[]) {
     return lineItems.reduce((acc, item) => {
@@ -52,23 +56,57 @@ function groupLineItems(lineItems: LineItem[]) {
     }, [] as any);
 }
 
+enum CartStage {
+    Create = "create",
+    Review = "review"
+}
+
 export function Cart() {
     const cart = useCart();
+    const [state, setState] = createSignal<CartStage>(CartStage.Create);
+
     return (
-        <div class="flex flex-col justify-between">
-            <For each={groupLineItems(cart.state.lineItems)}>
-                {(group) => (
-                    <CartItem name={group.item.name} price={group.total} count={group.quantity} />
-                )}
-            </For>
-            <span class="text-info">
-                Subtotal: ${
-                    cart.state.lineItems.reduce((acc, item) => { return acc+item.price; }, 0)   
-                }
-            </span>
-            <button class="btn btn-primary" onClick={() => onCheckout(cart.actions.getOrder())}>Continue To Checkout</button>
-        </div>              
+        <>
+        {state() === CartStage.Create && 
+            <div class="flex flex-col justify-between">
+                <For each={groupLineItems(cart.state.lineItems)}>
+                    {(group) => (
+                        <CartItem name={group.item.name} price={group.total} count={group.quantity} />
+                    )}
+                </For>
+                <span class="text-info">
+                    Subtotal: ${
+                        cart.state.lineItems.reduce((acc, item) => { return acc+item.price; }, 0)   
+                    }
+                </span>
+                <button class="btn btn-primary" onClick={() => onCheckout(cart, setState)}>Continue To Checkout</button>
+            </div>              
+        }
+
+        {state() === CartStage.Review && (
+            <div class="flex flex-col justify-between">
+                <For each={groupLineItems(cart.state.quote.orderCart.lineItems.elements)}>
+                    {(group) => (
+                        <CartItem name={group.item.name} price={group.total} count={group.quantity} />
+                    )}
+                </For>
+            <span>{cart.state.quote.total}</span>
+            <span>{cart.state.quote.totalTaxAmount}</span>
+            <span>{cart.state.quote.total}</span>
+            <Customer />
+            <button class="btn btn-primary" onClick={() => onBuy(cart)}>Buy</button>
+            </div>
+        )}
+        </>
     )
+                
+}
+
+async function onBuy(cart) {
+    const res = await cart.actions.createOrder();
+    if(res.href) {
+        window.location.replace(res.href);
+    }
 }
 
 
@@ -160,3 +198,31 @@ export function Cart() {
 //         "price": 1000,
 //         "name": "Coke"
 //     }
+
+
+// curl --location --request POST 'https://sandbox.dev.clover.com/invoicingcheckoutservice/v1/checkouts' \
+// --header 'X-Clover-Merchant-Id: X6A22CBB325M1' \
+// --header 'Authorization: Bearer 7d0d2a09-d485-0c5b-7b4d-1c8eb227446e' \
+// --header 'Content-Type: application/json' \  
+// --data-raw '{
+//   "customer" : {
+//     "email": "josh.elias@pm.me",    
+//     "firstName" : "Example",
+//     "lastName": "Customer",
+//     "phoneNumber": "223-555-0002"
+//   },
+//   "shoppingCart" : {
+//     "lineItems": [
+//       {
+//         "name": "Apple",
+//         "unitQty": 1,
+//         "price": 100
+//       },
+//       {
+//         "name": "Orange",
+//         "unitQty": 2,
+//         "price": 75
+//       }
+//     ]
+//   }
+//  }'

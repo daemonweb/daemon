@@ -18,7 +18,10 @@ import { it } from "node:test";
 
 export function routeData() {
     return createServerData$(async () => {
-        OpenAPI.BASE = process.env.CLOVER_BASE_URL;
+        if(process.env.CLOVER_BASE_URL) {
+          OpenAPI.BASE = process.env.CLOVER_BASE_URL;
+        }
+        
         OpenAPI.TOKEN = process.env.CLOVER_API_KEY;
         //const merchant = await MerchantsService.merchantGetMerchant(process.env.CLOVER_MERCHANT_ID);
         //console.log("merchant", merchant.name);

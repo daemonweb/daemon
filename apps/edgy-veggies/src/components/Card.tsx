@@ -3,6 +3,7 @@ import type { Item }  from "@clover-platform";
 import { useCart } from "./CartProvider";
 
 function getItemThumbnailUrl(itemId: string | undefined): string {
+    return "https://picsum.photos/120";
     return (itemId) 
         ? `https://cloverstatic.com/menu-assets/items/${itemId}_576x576.jpeg`
         : "https://picsum.photos/120"
