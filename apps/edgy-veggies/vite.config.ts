@@ -8,6 +8,9 @@ export default defineConfig(() => {
   dotenv.config();
   return {
     plugins: [solid({ssr: true, adapter: vercel() })],
+    ssr: {
+      noExternal: ["@hope-ui/core", "@hope-ui/styles"],
+    },
     resolve: {
       alias: [
         { find: '@clover-platform', replacement: resolve(__dirname, './.api/clover-platform') }

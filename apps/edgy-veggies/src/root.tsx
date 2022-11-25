@@ -1,4 +1,5 @@
 // @refresh reload
+import { ColorModeScript, HopeProvider, injectCriticalStyle } from "@hope-ui/core";
 import { Suspense } from "solid-js";
 import {
   A,
@@ -12,9 +13,12 @@ import {
   Scripts,
   Title,
 } from "solid-start";
+import { CartProvider } from "~/components/CartProvider";
 import "./root.css";
 
 export default function Root() {
+  injectCriticalStyle();
+
   return (
     <Html lang="en">
       <Head>
@@ -23,13 +27,20 @@ export default function Root() {
         <Meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
       <Body>
-        <Suspense>
+        <ColorModeScript/>
+        <HopeProvider >
+        <CartProvider >
+
+          <Suspense>
           <ErrorBoundary>
             <Routes>
               <FileRoutes />
             </Routes>
           </ErrorBoundary>
         </Suspense>
+        
+        </CartProvider>
+        </HopeProvider>
         <Scripts />
       </Body>
     </Html>
