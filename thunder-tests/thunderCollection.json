@@ -1,0 +1,13 @@
+[
+  {
+    "_id": "781ae50d-3fa5-4889-8a21-46acc94b0b17",
+    "colName": "Clover",
+    "created": "2022-11-25T16:44:39.988Z",
+    "sortNum": 10000,
+    "folders": [],
+    "settings": {
+      "headers": [],
+      "tests": []
+    }
+  }
+]

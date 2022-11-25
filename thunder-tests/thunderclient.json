@@ -1,0 +1,114 @@
+[
+  {
+    "_id": "9d4c3de7-c15c-416d-a760-c4d7460d0250",
+    "colId": "781ae50d-3fa5-4889-8a21-46acc94b0b17",
+    "containerId": "",
+    "name": "GetAllInventoryItems",
+    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}/items?filter=name=Red Romaine Head Lettuce&expand=modifierGroups%2Ctags%2Ccategories",
+    "method": "GET",
+    "sortNum": 10000,
+    "created": "2022-11-25T16:44:40.000Z",
+    "modified": "2022-11-25T16:44:40.000Z",
+    "headers": [
+      {
+        "name": "Content-Type",
+        "value": "application/json"
+      }
+    ],
+    "params": [
+      {
+        "name": "filter",
+        "value": "name=Red Romaine Head Lettuce",
+        "isPath": false
+      },
+      {
+        "name": "expand",
+        "value": "modifierGroups%2Ctags%2Ccategories",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{CLOVER_API_KEY}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "790f07e0-1904-4efc-a29d-9aed8715ba01",
+    "colId": "781ae50d-3fa5-4889-8a21-46acc94b0b17",
+    "containerId": "",
+    "name": "GetMerchant",
+    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}",
+    "method": "GET",
+    "sortNum": 20000,
+    "created": "2022-11-25T16:47:01.861Z",
+    "modified": "2022-11-25T16:48:03.222Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{CLOVER_API_KEY}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "f2d1e17a-ac00-4244-836f-ab04ac92de12",
+    "colId": "781ae50d-3fa5-4889-8a21-46acc94b0b17",
+    "containerId": "",
+    "name": "GetMerchantOpeningHours",
+    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}/opening_hours",
+    "method": "GET",
+    "sortNum": 40000,
+    "created": "2022-11-25T16:50:30.990Z",
+    "modified": "2022-11-25T16:51:11.316Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{CLOVER_API_KEY}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "0053c2a8-8bfd-4390-9b01-5af9392fff1d",
+    "colId": "781ae50d-3fa5-4889-8a21-46acc94b0b17",
+    "containerId": "",
+    "name": "GetMerchantOrderTypes",
+    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}/order_types?expand=hours,attributes,categories",
+    "method": "GET",
+    "sortNum": 60000,
+    "created": "2022-11-25T16:52:07.290Z",
+    "modified": "2022-11-25T16:53:20.472Z",
+    "headers": [],
+    "params": [
+      {
+        "name": "expand",
+        "value": "hours,attributes,categories",
+        "isPath": false
+      }
+    ],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{CLOVER_API_KEY}}"
+    },
+    "tests": []
+  },
+  {
+    "_id": "21c42408-33dc-4521-b037-cbb75381d45d",
+    "colId": "781ae50d-3fa5-4889-8a21-46acc94b0b17",
+    "containerId": "",
+    "name": "GetMerchantAddress",
+    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}/address",
+    "method": "GET",
+    "sortNum": 70000,
+    "created": "2022-11-25T16:54:10.278Z",
+    "modified": "2022-11-25T16:54:49.470Z",
+    "headers": [],
+    "params": [],
+    "auth": {
+      "type": "bearer",
+      "bearer": "{{CLOVER_API_KEY}}"
+    },
+    "tests": []
+  }
+]
