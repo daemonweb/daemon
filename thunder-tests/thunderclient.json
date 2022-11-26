@@ -4,11 +4,11 @@
     "colId": "781ae50d-3fa5-4889-8a21-46acc94b0b17",
     "containerId": "",
     "name": "GetAllInventoryItems",
-    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}/items?filter=name=Red Romaine Head Lettuce&expand=modifierGroups%2Ctags%2Ccategories",
+    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}/items?expand=taxRates%2CitemStock%2Ccategories",
     "method": "GET",
     "sortNum": 10000,
     "created": "2022-11-25T16:44:40.000Z",
-    "modified": "2022-11-25T16:44:40.000Z",
+    "modified": "2022-11-26T05:55:40.268Z",
     "headers": [
       {
         "name": "Content-Type",
@@ -19,11 +19,12 @@
       {
         "name": "filter",
         "value": "name=Red Romaine Head Lettuce",
+        "isDisabled": true,
         "isPath": false
       },
       {
         "name": "expand",
-        "value": "modifierGroups%2Ctags%2Ccategories",
+        "value": "taxRates%2CitemStock%2Ccategories",
         "isPath": false
       }
     ],
