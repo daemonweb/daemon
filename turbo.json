@@ -3,7 +3,12 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": ["dist/**"]
+      "outputs": ["dist/**"],
+      "env": [
+        "CLOVER_API_KEY",
+        "CLOVER_BASE_URL",
+        "CLOVER_MERCHANT_ID"
+      ]
     },
     "lint": {
       "outputs": []

@@ -1,4 +1,4 @@
-import { createTransition } from "@hope-ui/core";
+//import { createTransition } from "@hope-ui/core";
 import { createSignal } from "solid-js";
 import { HiOutlineSearch, HiOutlineMenu, HiOutlineX, HiOutlineShoppingCart } from "solid-icons/hi";
 
@@ -9,7 +9,7 @@ import { HiOutlineSearch, HiOutlineMenu, HiOutlineX, HiOutlineShoppingCart } fro
 
 
 export default function Navigation(props) {
-    const [show, setShow] = createSignal(false);
+    const [show] = createSignal(false);
     // const { style: showTransition } = createTransition(show, {
     //     transition:{
     //         in: { opacity: 0, scale: .95},

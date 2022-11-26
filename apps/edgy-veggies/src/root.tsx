@@ -2,7 +2,6 @@
 import { ColorModeScript, HopeProvider, injectCriticalStyle } from "@hope-ui/core";
 import { Suspense } from "solid-js";
 import {
-  A,
   Body,
   ErrorBoundary,
   FileRoutes,

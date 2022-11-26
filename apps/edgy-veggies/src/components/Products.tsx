@@ -1,5 +1,5 @@
 
-import { For } from "solid-js/web";
+import { For } from "solid-js";
 import { Item } from "@clover-platform";
 import Product from "~/components/Product";
 

@@ -3,7 +3,7 @@ import { getLargeImageUrl } from "~/services/Clover";
 import Counter from "./Counter";
 //import { useCart } from "./CartProvider";
 
-function getPrice(price: Number): string {
+function getPrice(price: number): string {
     if(price < 100) {
         return "$0.00";
     }
