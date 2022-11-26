@@ -1,28 +1,31 @@
-# Turborepo starter
-
-This is an official pnpm starter turborepo.
+# Daemon
+Monorepo for Daemon Web Tools. A collection of web apps and tools for commercial and educational applications.
 
 ## What's inside?
 
-This turborepo uses [pnpm](https://pnpm.io) as a package manager. It includes the following packages/apps:
+### Apps
 
-### Apps and Packages
+- `edge-veggies`: a [Solid](https://www.solidjs.com/) app
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
+### Packages
+
 - `ui`: a stub React component library shared by both `web` and `docs` applications
 - `eslint-config-custom`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `tsconfig`: `tsconfig.json`s used throughout the monorepo
 
 Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
 
-### Utilities
+### Features
 
 This turborepo has some additional tools already setup for you:
 
+- [Vite](https://vitejs.dev/) for web asset bundling
 - [TypeScript](https://www.typescriptlang.org/) for static type checking
 - [ESLint](https://eslint.org/) for code linting
 - [Prettier](https://prettier.io) for code formatting
+- [pnpm](https://pnpm.io) for a package manager
+- [Turborepo](https://turbo.build/repo) for the build system
+
 
 ### Build
 
