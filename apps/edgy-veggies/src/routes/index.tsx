@@ -16,9 +16,9 @@ export default function Home() {
   const {items, merchant} = useRouteData<typeof routeData>();
 
   return (
-    <>        
+    <>  
     <Navigation logoSrc={merchant().logos[0].url}/>
-    <main>
+    <main class="container mx-auto px-4 sm:px-6 lg:px-8">
       <Products items={items()} />
     </main> 
     <Footer />
