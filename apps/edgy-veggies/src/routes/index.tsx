@@ -1,29 +1,25 @@
 import { useRouteData } from "solid-start";
 import { createServerData$ } from "solid-start/server";
-import { getItems } from "~/services/Clover";
+import { getItems, getMerchant } from "~/services/Clover";
 import Products from "~/components/Products";
-import Navbar from "~/components/Navbar";
+import Navigation from "~/components/Navigation";
 import Footer from "~/components/Footer";
 
-
 export function routeData() {
-    return createServerData$(async () => {
-
-        const items = await getItems();
-        //console.log("items", items);
-        return items;
-    });
-    
+  return {
+    items: createServerData$(getItems),
+    merchant: createServerData$(getMerchant)
+  } 
 }
 
 export default function Home() {
-  const items = useRouteData<typeof routeData>();
+  const {items, merchant} = useRouteData<typeof routeData>();
 
   return (
     <>        
-    <Navbar />
+    <Navigation logoSrc={merchant().logos[0].url}/>
     <main>
-      <Products items={items()}/>
+      <Products items={items()} />
     </main> 
     <Footer />
     </>

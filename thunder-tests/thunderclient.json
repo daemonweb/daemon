@@ -38,13 +38,19 @@
     "colId": "781ae50d-3fa5-4889-8a21-46acc94b0b17",
     "containerId": "",
     "name": "GetMerchant",
-    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}",
+    "url": "{{CLOVER_BASE_URL}}/v3/merchants/{{CLOVER_MERCHANT_ID}}?expand=logos%2CorderTypes%2CopeningHours",
     "method": "GET",
     "sortNum": 20000,
     "created": "2022-11-25T16:47:01.861Z",
-    "modified": "2022-11-25T16:48:03.222Z",
+    "modified": "2022-11-26T03:23:42.239Z",
     "headers": [],
-    "params": [],
+    "params": [
+      {
+        "name": "expand",
+        "value": "logos%2CorderTypes%2CopeningHours",
+        "isPath": false
+      }
+    ],
     "auth": {
       "type": "bearer",
       "bearer": "{{CLOVER_API_KEY}}"
