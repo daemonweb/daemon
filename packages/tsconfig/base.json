@@ -1,7 +1,8 @@
 {
   "$schema": "https://json.schemastore.org/tsconfig",
   "display": "Default",
-  "compilerOptions": {
+  "compilerOptions": { 
+    "skipLibCheck": true,
     "importsNotUsedAsValues": "error",
     "incremental": true,
     "composite": false,
@@ -15,7 +16,6 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "preserveWatchOutput": true,
-    "skipLibCheck": true,
     "strict": true,
     "allowUnreachableCode": false,
     "allowUnusedLabels": false,
@@ -28,7 +28,5 @@
     "noImplicitThis": true,
     "noUncheckedIndexedAccess": true,
     "useUnknownInCatchVariables": true
-  },
-  "include": ["src"],
-  "exclude": ["node_modules"]
+  }
 }

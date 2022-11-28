@@ -1,11 +1,17 @@
 {
-  "extends": "tsconfig/solidstart.json",
   "compilerOptions": {
-    "types": ["vite/client"],
     "baseUrl": "./",
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsxImportSource": "solid-js",
+    "jsx": "preserve",
+    "types": ["vite/client"],
     "paths": {
-      "~/*": ["./src/*"],
-      "@clover-platform": ["./.api/clover-platform"]
+        "~/*": ["./src/*"]
     }
-  }
+  },
+  "include": ["src"],
 }

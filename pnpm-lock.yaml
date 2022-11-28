@@ -21,6 +21,7 @@ importers:
       '@tailwindcss/aspect-ratio': ^0.4.2
       '@tailwindcss/forms': ^0.5.3
       '@tailwindcss/typography': ^0.5.8
+      '@types/debug': ^4.1.7
       '@types/node': ^18.11.9
       autoprefixer: ^10.4.13
       clsx: ^1.2.1
@@ -55,6 +56,7 @@ importers:
       '@tailwindcss/aspect-ratio': 0.4.2_tailwindcss@3.2.4
       '@tailwindcss/forms': 0.5.3_tailwindcss@3.2.4
       '@tailwindcss/typography': 0.5.8_tailwindcss@3.2.4
+      '@types/debug': 4.1.7
       '@types/node': 18.11.9
       autoprefixer: 10.4.13_postcss@8.4.19
       dotenv: 16.0.3
@@ -1580,6 +1582,12 @@ packages:
   /@types/cookie/0.5.1:
     resolution: {integrity: sha512-COUnqfB2+ckwXXSFInsFdOAWQzCCx+a5hq2ruyj+Vjund94RJQd4LG2u9hnvJrTgunKAaax7ancBYlDrNYxA0g==}
 
+  /@types/debug/4.1.7:
+    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
+    dependencies:
+      '@types/ms': 0.7.31
+    dev: true
+
   /@types/eslint/8.4.10:
     resolution: {integrity: sha512-Sl/HOqN8NKPmhWo2VBEPm0nvHnu2LL3v9vKo8MEq0EtbJ4eVzGPl41VNPvn5E1i5poMk4/XD8UriLHpJvEP/Nw==}
     dependencies:
@@ -1597,6 +1605,10 @@ packages:
 
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
+
+  /@types/ms/0.7.31:
+    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
+    dev: true
 
   /@types/node/18.11.9:
     resolution: {integrity: sha512-CRpX21/kGdzjOpFsZSkcrXMGIBWMGNIHXXBVFSH+ggkftxg+XYP20TESbh+zFvFj3EQOl5byk0HTRn1IL6hbqg==}

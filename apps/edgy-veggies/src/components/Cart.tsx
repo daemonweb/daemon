@@ -1,6 +1,5 @@
-import { OrderCart, OrdersService, LineItem } from "@clover-platform";
+import type { LineItem } from "@clover-platform";
 import { createSignal, For } from "solid-js";
-import server$, { redirect } from 'solid-start/server'
 import CartItem from "./CartItem";
 import { useCart } from "./CartProvider";
 import Customer from "./Customer";
