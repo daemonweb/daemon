@@ -1,5 +1,7 @@
+import { createSignal } from "solid-js"
 import { useRouteData } from "solid-start";
 import { createServerData$ } from "solid-start/server";
+import Fuse from 'fuse.js'
 import { getItems, getMerchant } from "~/services/Clover";
 import Products from "~/components/Products";
 import Navigation from "~/components/Navigation";
@@ -16,12 +18,22 @@ export function routeData() {
 
 export default function Home() {
   const {items, merchant} = useRouteData<typeof routeData>();
+  const [visibleItems, setVisibleItems] = createSignal(items());
+
+  function onSearch(v) {
+    if(!v) return;
+    const fuse = new Fuse(items(), {
+      keys: ['name']
+    })
+    const newItems = fuse.search(v).map(v => v.item)
+    setVisibleItems(newItems);
+  }
 
   return (
     <>
-    <Navigation merchant={merchant()}/>
+    <Navigation merchant={merchant()} onSearch={onSearch}/>
     <main class="container mx-auto px-4 sm:px-6 lg:px-8">
-      <Products items={items} />
+      <Products items={visibleItems()} />
       <Drawer>
         <Cart />
         </Drawer>
@@ -30,3 +42,4 @@ export default function Home() {
     </>
   );
 }
+

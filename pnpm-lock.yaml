@@ -29,6 +29,7 @@ importers:
       dotenv: ^16.0.3
       esbuild: ^0.15.15
       eslint-config-custom: workspace:0.0.0
+      fuse.js: ^6.6.2
       openapi-typescript-codegen: ^0.23.0
       postcss: ^8.4.19
       rollup: ^3.4.0
@@ -51,6 +52,7 @@ importers:
       '@stitches/core': 1.2.8
       clsx: 1.2.1
       daisyui: 2.42.1_2lwn2upnx27dqeg6hqdu7sq75m
+      fuse.js: 6.6.2
       solid-headless: 0.13.0_solid-js@1.6.2
       solid-icons: 1.0.4_solid-js@1.6.2
       solid-js: 1.6.2
@@ -3074,6 +3076,11 @@ packages:
 
   /functions-have-names/1.2.3:
     resolution: {integrity: sha512-xckBUXyTIqT97tq2x2AMb+g163b5JFysYk0x4qxNFwbfQkmNZoiRHb6sPzI9/QV33WeuvVYBUIiD4NzNIyqaRQ==}
+    dev: false
+
+  /fuse.js/6.6.2:
+    resolution: {integrity: sha512-cJaJkxCCxC8qIIcPBF9yGxY0W/tVZS3uEISDxhYIdtk8OL93pe+6Zj7LjCqVV4dzbqcriOZ+kQ/NE4RXZHsIGA==}
+    engines: {node: '>=10'}
     dev: false
 
   /gensync/1.0.0-beta.2:

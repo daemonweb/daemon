@@ -1,5 +1,5 @@
 //import { createTransition } from "@hope-ui/core";
-import { createSignal, Resource, Suspense } from "solid-js";
+import { createEffect, createSignal, on, Resource, Suspense } from "solid-js";
 import { HiOutlineSearch, HiOutlineMenu, HiOutlineX, HiOutlineShoppingCart } from "solid-icons/hi";
 import { Merchant } from "@clover_platform";
 import { useDrawer } from "./Drawer";
@@ -7,11 +7,15 @@ import { useCart } from "./CartProvider";
 
 interface NavigationProps {
   merchant: Merchant;
+  onSearch: (search: string) => void;
 }
 
 export default function Navigation(props: NavigationProps) {
     const drawer = useDrawer();
     const cart = useCart();
+    const [search, setSearch] = createSignal("");
+
+    createEffect(on(search, v => props.onSearch(v)))
 
     return (
         <header class="bg-gray-800">
@@ -32,7 +36,7 @@ export default function Navigation(props: NavigationProps) {
                     <HiOutlineSearch style={{height:"1.6em", width:"1.6em"}} />
                   </div>
                   <input 
-                    id="search" 
+                    onInput={(e) => setSearch(e.currentTarget.value)} 
                     name="search" 
                     class="
                         block 
