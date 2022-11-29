@@ -4,7 +4,7 @@ import server$ from "solid-start/server";
 import { Discount, LineItem, OrderCart, OrdersService, OrderType } from "@clover-platform";
 
 
-type CartState = {
+export type CartState = {
     lineItems: LineItem[],
     discounts?: Discount[],
     orderType?: OrderType
@@ -83,6 +83,9 @@ export function CartProvider(props) {
 export const useCart = (): CartContextModel => {
     return useContext(CartContext);
 }
+
+
+
 
 
 

@@ -34,9 +34,9 @@ export default function Home() {
     <Navigation merchant={merchant()} onSearch={onSearch}/>
     <main class="container mx-auto px-4 sm:px-6 lg:px-8">
       <Products items={visibleItems()} />
-      <Drawer>
+      <Drawer title={"Shopping Cart"}>
         <Cart />
-        </Drawer>
+      </Drawer>
     </main> 
     <Footer />
     </>

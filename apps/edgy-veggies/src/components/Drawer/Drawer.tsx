@@ -5,7 +5,8 @@ import { useDrawer } from "./DrawerContext";
 
 
 interface DrawerProps {
-    children?: JSX.Element
+    children?: JSX.Element,
+    title: string
 }
 
 export function Drawer(props: DrawerProps) {
@@ -47,7 +48,7 @@ export function Drawer(props: DrawerProps) {
                                 <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                                     <div class="px-4 sm:px-6">
                                     <div class="flex items-start justify-between">
-                                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping Cart</h2>
+                                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">{props.title}</h2>
                                         <div class="ml-3 flex h-7 items-center">
                                             <button 
                                                 type="button" 
