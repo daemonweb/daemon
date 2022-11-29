@@ -3,29 +3,15 @@ import { createSignal, Resource, Suspense } from "solid-js";
 import { HiOutlineSearch, HiOutlineMenu, HiOutlineX, HiOutlineShoppingCart } from "solid-icons/hi";
 import { Merchant } from "@clover_platform";
 import { useDrawer } from "./Drawer";
+import { useCart } from "./CartProvider";
 
 interface NavigationProps {
-  merchant: Resource<Merchant>
+  merchant: Merchant;
 }
 
 export default function Navigation(props: NavigationProps) {
-    const [show] = createSignal(false);
     const drawer = useDrawer();
-    // const { style: showTransition } = createTransition(show, {
-    //     transition:{
-    //         in: { opacity: 0, scale: .95},
-    //         out: { opacity: 1, scale: 1 },      
-    //     },
-    //     duration: 100,
-    //     easing: "ease-out",
-    // });
-
-    // Entering: "transition ease-out duration-100"
-    // From: "transform opacity-0 scale-95"
-    // To: "transform opacity-100 scale-100"
-    // Leaving: "transition ease-in duration-75"
-    // From: "transform opacity-100 scale-100"
-    // To: "transform opacity-0 scale-95"
+    const cart = useCart();
 
     return (
         <header class="bg-gray-800">
@@ -63,25 +49,25 @@ export default function Navigation(props: NavigationProps) {
                 </div>
               </div>
             </div>
-            <div class="relative z-10 flex items-center lg:hidden">
-              {/* --- Mobile menu button --- */ }
-              <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
-                <span class="sr-only">Open menu</span>
-                {show() ? <HiOutlineMenu/> : <HiOutlineX />}
-              </button>
-            </div>
-            <div class="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
-              <button type="button" class="flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                <span class="sr-only">View notifications</span>
-                <HiOutlineShoppingCart 
-                  style={{height:"1.6em", width:"1.6em"}}
-                  onClick={() => drawer.actions.open()} />
+
+            <div class="relative z-10 ml-4 flex items-center">
+              <button  
+                type="button" 
+                class="
+                  flex-shrink-0 rounded-full bg-gray-800 p-1 
+                  text-gray-400 hover:text-white 
+                  focus:outline-none">
+                <span class="sr-only">View Cart</span>
+                <div class="indicator">
+                  <HiOutlineShoppingCart 
+                    style={{height:"1.6em", width:"1.6em"}}
+                    onClick={() => drawer.actions.open()} />
+                  <span class="badge badge-sm badge-primary indicator-item">{cart.state.lineItems.length}</span>
+                </div>
               </button>
             </div>
           </div>
         </div>
-      
-
       </header>
       )
 }
