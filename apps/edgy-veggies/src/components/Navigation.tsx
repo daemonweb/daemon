@@ -1,15 +1,16 @@
 //import { createTransition } from "@hope-ui/core";
-import { createSignal } from "solid-js";
+import { createSignal, Resource, Suspense } from "solid-js";
 import { HiOutlineSearch, HiOutlineMenu, HiOutlineX, HiOutlineShoppingCart } from "solid-icons/hi";
+import { Merchant } from "@clover_platform";
+import { useDrawer } from "./Drawer";
 
+interface NavigationProps {
+  merchant: Resource<Merchant>
+}
 
-
-
-
-
-
-export default function Navigation(props) {
+export default function Navigation(props: NavigationProps) {
     const [show] = createSignal(false);
+    const drawer = useDrawer();
     // const { style: showTransition } = createTransition(show, {
     //     transition:{
     //         in: { opacity: 0, scale: .95},
@@ -32,7 +33,9 @@ export default function Navigation(props) {
           <div class="relative flex h-24 justify-between">
             <div class="relative z-10 flex px-2 lg:px-0">
               <div class="flex flex-shrink-0 items-center">
-                <img class="block h-16 w-auto" src={props.logoSrc} alt="Your Company"/>
+                <Suspense>
+                  <img class="block h-16 w-auto" src={props.merchant?.logos[0].url} alt="Your Company"/>
+                </Suspense>
               </div>
             </div>
             <div class="relative z-0 flex flex-1 items-center justify-center px-2 sm:absolute sm:inset-0">
@@ -64,13 +67,15 @@ export default function Navigation(props) {
               {/* --- Mobile menu button --- */ }
               <button type="button" class="inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white" aria-controls="mobile-menu" aria-expanded="false">
                 <span class="sr-only">Open menu</span>
-                {show() ? <HiOutlineMenu /> : <HiOutlineX />}
+                {show() ? <HiOutlineMenu/> : <HiOutlineX />}
               </button>
             </div>
             <div class="hidden lg:relative lg:z-10 lg:ml-4 lg:flex lg:items-center">
               <button type="button" class="flex-shrink-0 rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                 <span class="sr-only">View notifications</span>
-                <HiOutlineShoppingCart style={{height:"1.6em", width:"1.6em"}} />
+                <HiOutlineShoppingCart 
+                  style={{height:"1.6em", width:"1.6em"}}
+                  onClick={() => drawer.actions.open()} />
               </button>
             </div>
           </div>

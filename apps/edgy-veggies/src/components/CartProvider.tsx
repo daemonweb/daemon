@@ -34,6 +34,7 @@ export function CartProvider(props) {
         state:state,
         actions: {
             add(items) {
+                console.log("add items", items);
                 if(Array.isArray(items)) {
                     setState({lineItems: [...state.lineItems, ...items]});
                 } else {
@@ -41,14 +42,32 @@ export function CartProvider(props) {
                 }
             },
             remove(items) {
+                let toBeDeleted = {}
                 if(Array.isArray(items)) {
-                    setState({lineItems: state.lineItems.filter(item => !items.includes(item))});
+                    toBeDeleted = items.reduce((arr, v) => {
+                        if(!arr[v.id]) {
+                            arr[v.id] = 0;
+                        }
+                        arr[v.id]++;
+                        return arr;
+                    }, {})
                 } else {
-                    setState({lineItems: state.lineItems.filter(item => item !== items)});
+                    toBeDeleted[items.id] = 1;
                 }
+
+                const newItems = state.lineItems.filter(item => {
+                    if(toBeDeleted[item.id]) {
+                        toBeDeleted[item.id]--;
+                        return false;
+                    }
+                    return true;
+                });
+                setState({lineItems: [...newItems]});
+                
             },
-            getItemCount(itemName) {
-                return state.lineItems.filter(item => item.name === itemName).length;
+            getItemCount(itemId) {
+                const count = state.lineItems.filter(item => item.id === itemId).length;
+                return count;
             },
             getQuote: getQuote(state, setState),
             createOrder: createCheckout
@@ -78,12 +97,12 @@ function itemsToOrderCart(lineItems: LineItem[]): OrderCart {
             return {
                 id: item.id,
                 item: { id: item.id},
-                // name: item.name,
+                name: item.name,
                 // alternateName: item.alternateName,
                 price: item.price,
-                // itemCode: item.itemCode,
-                // discounts: item.discounts,
-                // taxRates: item.taxRates,
+                itemCode: item.itemCode,
+                discounts: item.discounts,
+                taxRates: item.taxRates,
             }
         }),
         groupLineItems: false

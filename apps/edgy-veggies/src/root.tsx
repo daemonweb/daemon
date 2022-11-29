@@ -1,5 +1,9 @@
 // @refresh reload
-import { ColorModeScript, HopeProvider, injectCriticalStyle } from "@hope-ui/core";
+import { 
+  ColorModeScript, 
+  HopeProvider, 
+  injectCriticalStyle 
+} from "@hope-ui/core";
 import { Suspense } from "solid-js";
 import {
   Body,
@@ -13,6 +17,7 @@ import {
   Title,
 } from "solid-start";
 import { CartProvider } from "~/components/CartProvider";
+import { DrawerProvider } from "./components/Drawer";
 import "./root.css";
 
 export default function Root() {
@@ -29,6 +34,8 @@ export default function Root() {
         <ColorModeScript/>
         <HopeProvider >
         <CartProvider >
+        <DrawerProvider>
+
 
           <Suspense>
           <ErrorBoundary>
@@ -37,7 +44,9 @@ export default function Root() {
             </Routes>
           </ErrorBoundary>
         </Suspense>
-        
+
+
+        </DrawerProvider>
         </CartProvider>
         </HopeProvider>
         <Scripts />
