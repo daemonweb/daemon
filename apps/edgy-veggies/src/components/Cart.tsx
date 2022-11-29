@@ -1,4 +1,5 @@
 import type { LineItem } from "@clover-platform";
+import { priceToString } from "../services/Clover"
 import { createSignal, For } from "solid-js";
 import CartItem from "./CartItem";
 import { useCart } from "./CartProvider";
@@ -65,13 +66,14 @@ export function Cart() {
     //const [state, setState] = createSignal<CartStage>(CartStage.Create);
 
     return (
-        <ul role="list" class="mt-6 divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500">
+        <ul role="list" class="divide-y divide-gray-200 border-t border-gray-200 text-sm font-medium text-gray-500">
             <For each={groupLineItems(cart.state.lineItems)}>
                 {(group) => (
                     <CartItem 
                         name={group.item.name} 
                         imgSrc={group.item.smallImgSrc}
-                        price={group.total} 
+                        price={priceToString(group.total)}
+                        totalPrice={priceToString(group.total*group.quantity)}
                         count={group.quantity} />
                 )}
             </For>

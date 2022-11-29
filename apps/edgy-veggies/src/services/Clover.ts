@@ -79,6 +79,16 @@ export function getFakeImageUrl() {
     return "https://picsum.photos/120";
 }
 
+export function priceToString(price: number): string {
+    if(price < 100) {
+        return "$0.00";
+    }
+    const rawString = price.toString();
+    const i = rawString.length-2
+    return `${rawString.substring(0, i)}.${rawString.substring(i, rawString.length)}`
+}
+
+
 
 //const merchant = await MerchantsService.merchantGetMerchant(process.env.CLOVER_MERCHANT_ID);
 //console.log("merchant", merchant.name);

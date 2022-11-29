@@ -15,10 +15,21 @@ export function Drawer(props: DrawerProps) {
         <>
         <Transition show={drawer.state.isOpen}>
             <div class="relative z-10" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
-                {/*<!-- Background backdrop, show/hide based on slide-over state. -->*/}
-                <div class="fixed inset-0" />
+                
+                <TransitionChild
+                        class="fixed inset-0 bg-black opacity-30"
+                        enter="ease-in-out duration-500 sm:duration-700"
+                        enterFrom="opacity-0"
+                        enterTo="opacity-30"
+                        leave="ease-in-out duration-500 sm:duration-700"
+                        leaveFrom="opacity-30"
+                        leaveTo="opacity-0"
+                />
 
-                <div class="fixed inset-0 overflow-hidden">
+                <div 
+                    class="fixed inset-0 overflow-hidden"
+                    onClick={() => drawer.actions.close()}
+                >
                     <div class="absolute inset-0 overflow-hidden">
                         <div class="pointer-events-none fixed inset-y-0 right-0 flex max-w-full pl-10">
 
@@ -36,7 +47,7 @@ export function Drawer(props: DrawerProps) {
                                 <div class="flex h-full flex-col overflow-y-scroll bg-white py-6 shadow-xl">
                                     <div class="px-4 sm:px-6">
                                     <div class="flex items-start justify-between">
-                                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Panel title</h2>
+                                        <h2 class="text-lg font-medium text-gray-900" id="slide-over-title">Shopping Cart</h2>
                                         <div class="ml-3 flex h-7 items-center">
                                             <button 
                                                 type="button" 
