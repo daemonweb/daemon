@@ -7,6 +7,7 @@ import {
     OrderType
 } from "@clover-platform"
 
+
 OpenAPI.BASE = process.env.CLOVER_BASE_URL;
 OpenAPI.TOKEN = process.env.CLOVER_API_KEY;
 
@@ -27,7 +28,13 @@ export async function getMerchant() {
 
 export async function getItems(): Promise<Item[]> {
     return (await InventoryService.inventoryGetItems(process.env.CLOVER_MERCHANT_ID))
-      .elements as Item[];  
+      .elements
+      .map(v => { 
+        return {
+            smallImgSrc: getSmallImageUrl(v.id),
+            largeImgSrc: getLargeImageUrl(v.id),
+            ...v
+        }}) as Item[];  
 }
   
 export async function getOrderTypes(): Promise<OrderType[]> {
@@ -45,7 +52,18 @@ export enum ItemImageSize {
     LARGE = 576
 }
 
+const missingImages = [
+    "MHA4G4ST2X8W8",
+    "C55WZQZ0PA088",
+    "69418PRAE5T3P",
+    "M084119RRQZYT",
+]
+
 function getImageUrl(itemId: string, size: ItemImageSize): string {
+    if (missingImages.includes(itemId)) {
+        return getFakeImageUrl();
+    }
+
     return `https://cloverstatic.com/menu-assets/items/${itemId}_${size}x${size}.jpeg`
 }
  

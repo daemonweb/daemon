@@ -1,7 +1,7 @@
 import type { Item }  from "@clover-platform";
 import { getLargeImageUrl } from "~/services/Clover";
 import Counter from "./Counter";
-//import { useCart } from "./CartProvider";
+import { useCart } from "./CartProvider";
 
 function getPrice(price: number): string {
     if(price < 100) {
@@ -17,7 +17,7 @@ export type ProductProps = {
 }
 
 export default function Product(props: ProductProps) {
-    //const cart = useCart();
+    const cart = useCart();
     return (
         <a /*href={product.href}*/ class="group">
             <div class="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-w-7 xl:aspect-h-8">
@@ -30,7 +30,10 @@ export default function Product(props: ProductProps) {
             <h3 class="mt-4 text-sm text-gray-700">{props.item.name}</h3>
             <div class="flex justify-between">
                 <p class="mt-1 text-lg font-medium text-gray-900">{getPrice(props.item.price)}</p>
-                <Counter />
+                <Counter 
+                    count={cart.actions.getItemCount(props.item.id)}
+                    increment={() => cart.actions.add(props.item)}
+                    decrement={() => cart.actions.remove(props.item)}/>
             </div>    
         </a>
     );
