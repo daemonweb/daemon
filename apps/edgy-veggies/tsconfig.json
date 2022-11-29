@@ -10,7 +10,8 @@
     "jsx": "preserve",
     "types": ["vite/client"],
     "paths": {
-        "~/*": ["./src/*"]
+        "~/*": ["./src/*"],
+        "@clover-platform": ["./.api/clover-platform"]
     }
   },
   "include": ["src"],
