@@ -1,9 +1,9 @@
-//import { createTransition } from "@hope-ui/core";
-import { createEffect, createSignal, on, Resource, Suspense } from "solid-js";
-import { HiOutlineSearch, HiOutlineMenu, HiOutlineX, HiOutlineShoppingCart } from "solid-icons/hi";
+import { createEffect, createSignal, on, Suspense } from "solid-js";
+import { HiOutlineSearch, HiOutlineShoppingCart } from "solid-icons/hi";
 import { Merchant } from "@clover_platform";
 import { useDrawer } from "./Drawer";
-import { useCart } from "./CartProvider";
+import { useCart } from "~/components/Ecommerce";
+
 
 interface NavigationProps {
   merchant: Merchant;
@@ -66,7 +66,7 @@ export default function Navigation(props: NavigationProps) {
                   <HiOutlineShoppingCart 
                     style={{height:"1.6em", width:"1.6em"}}
                     onClick={() => drawer.actions.open()} />
-                  <span class="badge badge-sm badge-primary indicator-item">{cart.state.lineItems.length}</span>
+                  <span class="badge badge-sm badge-primary indicator-item">{cart.state.items.length}</span>
                 </div>
               </button>
             </div>

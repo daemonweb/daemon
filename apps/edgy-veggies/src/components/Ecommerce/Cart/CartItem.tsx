@@ -1,14 +1,8 @@
-import { HiSolidTrash, HiSolidCurrencyDollar, HiOutlineX } from "solid-icons/hi";
+import { /*HiSolidTrash,*/ HiSolidCurrencyDollar } from "solid-icons/hi";
+import { ICardItemProps } from "../types";
 
-export type CardItemProps = {
-    name: string,
-    price: string,
-    totalPrice: string,
-    count: number,
-    imgSrc: string
-}
 
-export default function CartItem(props: CardItemProps) {
+export default function CartItem(props: ICardItemProps) {
     return (
         <li class="flex justify-between space-x-6 py-6">
           <div class="flex">
@@ -47,14 +41,3 @@ export default function CartItem(props: CardItemProps) {
           </li>
     );
 }
-
-{/* <div class="flex justify-between flex-nowrap h-12">
-<div class="flex flex-col">
-    <span>{props.name}</span>
-    <HiOutlineX/><span>{props.count}</span>
-</div>
-<div class="flex flex-col">
-    <HiSolidCurrencyDollar /><span>{props.price}</span>
-    <HiSolidTrash class="w-6 h-6" />
-</div>
-</div> */}

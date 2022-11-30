@@ -1,7 +1,8 @@
 import type { Item }  from "@clover-platform";
-import { getLargeImageUrl } from "~/services/Clover";
+import { getLargeImageUrl } from "~/components/Ecommerce/Clover";
 import Counter from "./Counter";
-import { useCart } from "./CartProvider";
+import { useCart } from "~/components/Ecommerce";
+
 
 function getPrice(price: number): string {
     if(price < 100) {
@@ -32,8 +33,8 @@ export default function Product(props: ProductProps) {
                 <p class="mt-1 text-lg font-medium text-gray-900">{getPrice(props.item.price)}</p>
                 <Counter 
                     count={cart.actions.getItemCount(props.item.id)}
-                    increment={() => cart.actions.add(props.item)}
-                    decrement={() => cart.actions.remove(props.item)}/>
+                    increment={() => cart.actions.addItems(props.item)}
+                    decrement={() => cart.actions.removeItems(props.item)}/>
             </div>    
         </a>
     );

@@ -9,7 +9,7 @@ export function CartStatus(props) {
     return (
         <div class="indicator">
             {props.children}
-            <span class="badge badge-sm badge-primary indicator-item">{cart.state.lineItems.length}</span>
+            {props.count && <span class="badge badge-sm badge-primary indicator-item">{props.count}</span>}
         </div>
     );
 };

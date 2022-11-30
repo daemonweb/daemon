@@ -2,7 +2,7 @@ import { createSignal } from "solid-js"
 import { useRouteData } from "solid-start";
 import { createServerData$ } from "solid-start/server";
 import Fuse from 'fuse.js'
-import { getItems, getMerchant } from "~/services/Clover";
+import { getItems, getMerchant } from "~/components/Ecommerce/Clover"
 import Products from "~/components/Products";
 import Navigation from "~/components/Navigation";
 import Footer from "~/components/Footer";
