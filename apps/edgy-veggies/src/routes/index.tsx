@@ -7,14 +7,14 @@ import Products from "~/components/Products";
 import Navigation from "~/components/Navigation";
 import Footer from "~/components/Footer";
 import { Drawer } from "../components/Drawer";
-import { Cart } from "~/components/Cart";
+import { Cart } from "~/components/Ecommerce/Cart/Cart";
 
 export function routeData() {
   return {
     items: createServerData$(getItems),
     merchant: createServerData$(getMerchant)
   } 
-}
+} 
 
 export default function Home() {
   const {items, merchant} = useRouteData<typeof routeData>();
