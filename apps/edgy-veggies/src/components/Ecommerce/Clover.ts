@@ -37,7 +37,7 @@ export async function getItems(): Promise<IStoreItem[]> {
             ...v,
             smallImgSrc: getSmallImageUrl(v.id),
             largeImgSrc: getLargeImageUrl(v.id),
-            price: convertCloverPrice((v.price))
+            price: convertCloverPrice(v.price)
         }}) as IStoreItem[];  
 }
   
@@ -92,83 +92,50 @@ export function priceToString(price: number): number {
 
 
 
-const checkoutOrder = server$(async (orderCart: any) => {
-    return await OrdersService.orderCheckoutAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart });
-});
-
-function itemsToOrderCart(items: IStoreItem[]): OrderCart {
-    return {
-        note: "",
-        lineItems: items.map(item => {
-            return {
-                id: item.id,
-                item: { id: item.id},
-                name: item.name,
-                // alternateName: item.alternateName,
-                price: item.price,
-                //itemCode: item.itemCode,
-                //discounts: item.discounts,
-                //taxRates: item.taxRates,
-            }
-        }),
-        groupLineItems: false
-    }
-}
-
-
-const getQuote = (state, setState) => async () => {
-    const items = state.lineItems;
-    const orderCart = itemsToOrderCart(items);
-    const res = await checkoutOrder(orderCart);
-    console.log("res", res);
-    setState({quote: res});
-    return res;
-}
-
-// const cloverCreateOrder = async (orderCart) => {
+// const cloverCreateOrder = server$(async (orderCart) => {
 //     return await OrdersService.orderCreateAtomicOrder(process.env.CLOVER_MERCHANT_ID, { orderCart: orderCart });
-// }
+// });
 
-// const createOrder = (state, setState) => async () => {
+// export const createOrder = (state, setState) => async () => {
 //     const items = state.lineItems;
 //     const orderCart = cloverCreateOrder(items);
-//     const res = await checkoutOrder(orderCart);
+//     const res = await createCheckout();
 //     console.log("order", res);
 // }
 
-const createCheckout = (server$(async () => {
-    const res = await fetch('https://sandbox.dev.clover.com/invoicingcheckoutservice/v1/checkouts', {
-        method: 'POST',
-        headers: {
-            'X-Clover-Merchant-Id': process.env.CLOVER_MERCHANT_ID,
-            'Authorization': 'Bearer ' + process.env.CLOVER_API_KEY,
-            'Content-Type': 'application/json' 
-        },
-        body: JSON.stringify({
-            "customer" : {
-                "email": "josh.elias@pm.me",    
-                "firstName" : "Example",
-                "lastName": "Customer",
-                "phoneNumber": "223-555-0002"
-            },
-            "shoppingCart" : {
-                "lineItems": [
-                    {
-                        "name": "Apple",
-                        "unitQty": 1,
-                        "price": 100
-                    },
-                    {
-                        "name": "Orange",
-                        "unitQty": 2,
-                        "price": 75
-                    }
-                ]
-            }
-        })
-    });
-    return await res.json();
-}));
+// const createCheckout = server$(async () => {
+//     const res = await fetch('https://sandbox.dev.clover.com/invoicingcheckoutservice/v1/checkouts', {
+//         method: 'POST',
+//         headers: {
+//             'X-Clover-Merchant-Id': process.env.CLOVER_MERCHANT_ID,
+//             'Authorization': 'Bearer ' + process.env.CLOVER_API_KEY,
+//             'Content-Type': 'application/json' 
+//         },
+//         body: JSON.stringify({
+//             "customer" : {
+//                 "email": "josh.elias@pm.me",    
+//                 "firstName" : "Example",
+//                 "lastName": "Customer",
+//                 "phoneNumber": "223-555-0002"
+//             },
+//             "shoppingCart" : {
+//                 "lineItems": [
+//                     {
+//                         "name": "Apple",
+//                         "unitQty": 1,
+//                         "price": 100
+//                     },
+//                     {
+//                         "name": "Orange",
+//                         "unitQty": 2,
+//                         "price": 75
+//                     }
+//                 ]
+//             }
+//         })
+//     });
+//     return await res.json();
+// });
 
 
 // {

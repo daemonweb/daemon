@@ -16,7 +16,7 @@ import {
   Scripts,
   Title,
 } from "solid-start";
-import { CartProvider } from "~/components/CartProvider";
+import { CartProvider } from "~/components/Ecommerce/Cart/CartContext";
 import { DrawerProvider } from "./components/Drawer";
 import "./root.css";
 

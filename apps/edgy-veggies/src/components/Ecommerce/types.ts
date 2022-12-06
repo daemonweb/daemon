@@ -64,7 +64,7 @@ export interface ICartActions {
     removeItems(item: IStoreItem | IStoreItem[]): void,
     getItemCount(lineItem): number,
     //getQuote(),
-    //createOrder()
+    createOrder()
 }
 
 export interface ICardItemProps {

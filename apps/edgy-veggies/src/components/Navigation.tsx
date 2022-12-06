@@ -1,6 +1,6 @@
 import { createEffect, createSignal, on, Suspense } from "solid-js";
 import { HiOutlineSearch, HiOutlineShoppingCart } from "solid-icons/hi";
-import { Merchant } from "@clover_platform";
+import { Merchant } from "@clover-platform";
 import { useDrawer } from "./Drawer";
 import { useCart } from "~/components/Ecommerce";
 

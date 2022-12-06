@@ -1,17 +1,9 @@
 import type { Item }  from "@clover-platform";
 import { getLargeImageUrl } from "~/components/Ecommerce/Clover";
+import { formatPrice } from "~/components/Ecommerce/utils";
 import Counter from "./Counter";
 import { useCart } from "~/components/Ecommerce";
 
-
-function getPrice(price: number): string {
-    if(price < 100) {
-        return "$0.00";
-    }
-    const rawString = price.toString();
-    const i = rawString.length-2
-    return `$${rawString.substring(0, i)}.${rawString.substring(i, rawString.length)}`
-}
 
 export type ProductProps = {
     item: Item
@@ -30,7 +22,7 @@ export default function Product(props: ProductProps) {
             </div>
             <h3 class="mt-4 text-sm text-gray-700">{props.item.name}</h3>
             <div class="flex justify-between">
-                <p class="mt-1 text-lg font-medium text-gray-900">{getPrice(props.item.price)}</p>
+                <p class="mt-1 text-lg font-medium text-gray-900">{`$${formatPrice(props.item.price)}`}</p>
                 <Counter 
                     count={cart.actions.getItemCount(props.item.id)}
                     increment={() => cart.actions.addItems(props.item)}

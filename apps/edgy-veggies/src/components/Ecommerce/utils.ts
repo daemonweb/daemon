@@ -1,11 +1,11 @@
 import { IStoreItem, ICartItem } from "./types";
 
-export function  convertCloverPrice(price: number): string {
+export function convertCloverPrice(price: number): number {
     if(price < 100) {
-        return "0.00";
+        return 0.00;
     }
 
-    return price.toFixed(2);
+    return price * 0.01;
 }
 
 export function storeToCartItems(items: IStoreItem[]): ICartItem[] {
@@ -28,4 +28,13 @@ export function storeToCartItems(items: IStoreItem[]): ICartItem[] {
         cartItem.total += item.price;
         return acc;
     }, [] as ICartItem[]);
+}
+
+const priceFormatter = new Intl.NumberFormat('en-US', {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
+
+export function formatPrice(price: number): string {
+    return priceFormatter.format(price);
 }

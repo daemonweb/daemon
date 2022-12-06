@@ -1,6 +1,7 @@
 import { createContext, useContext } from "solid-js";
 import { createStore } from "solid-js/store";
 import { IStoreItem, ICartContextModel, ICartState } from "../types";
+import { createCheckout } from "../Clover";
 
 
 const CartContext = createContext<ICartContextModel>();
