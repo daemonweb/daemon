@@ -9,12 +9,19 @@ import { DataDigitaloceanSshKey } from "./.gen/providers/digitalocean/data-digit
 import { Droplet } from "./.gen/providers/digitalocean/droplet";
 // import { Loadbalancer } from "./.gen/providers/digitalocean/loadbalancer";
 
+const serverUser = process.env.SERVER_USER;
+const serverUserPass = process.env.SERVER_USER_PASSWORD;
+
+const dbName = process.env.DATABASE_NAME;
+const dbUser = process.env.DATABASE_USERNAME;
+const dbPass = process.env.DATABASE_PASSWORD;
+
 
 class MyStack extends TerraformStack {
   constructor(scope: Construct, id: string) {
     super(scope, id);
 
-    new DigitaloceanProvider(this, "provider");
+    new DigitaloceanProvider(this, "do-provider");
 
     const sshKey = new DataDigitaloceanSshKey(this, "ssh-key", {
       name: "do_key"
@@ -27,22 +34,67 @@ class MyStack extends TerraformStack {
     // 
     // Other Guides
     // https://www.digitalocean.com/community/tutorials/how-to-deploy-load-balanced-web-applications-on-digitalocean-with-cdk-for-terraform-and-typescript
-    new Droplet(this, "postgres", {
-      name: "postgres",
+    // https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-centos-8
+    // https://somnathr.com/blog/postgres-expose/
+    new Droplet(this, "edgy-postgres", {
+      name: "edgy-postgres",
       image: "centos-stream-9-x64",
       size: "s-1vcpu-512mb-10gb",
       region: "nyc1",
       sshKeys: [sshKey.id.toString()],
       userData:`#!/bin/bash
+        # Initial Droplet Setup
+
+        # Update the system
         yum update -y
-        adduser remote
-        echo "remote:${process.env.REMOTE_DROPLET_PASS}" | chpasswd
-        usermod -aG wheel remote
+
+        # Add Remote User
+        adduser ${serverUser}
+        echo "${serverUser}:${serverUserPass}" | chpasswd
+        usermod -aG wheel ${serverUser}
+
+        # Initialize Firewall
         dnf install firewalld -y
         systemctl start firewalld
         firewall-cmd --permanent --add-service=http
         firewall-cmd --reload
-        rsync --archive --chown=remote:remote ~/.ssh /home/remote
+
+        # Copy SSH Keys for Remote User
+        rsync --archive --chown=${serverUser}:${serverUser} ~/.ssh /home/${serverUser}
+
+        # Install Postgres
+
+        # Install DNF Package
+        dnf install postgresql-server -y
+
+        # Initialize Postgres DB Cluster
+        postgresql-setup --initdb
+
+        # Start+Enable Postgres Service
+        systemctl start postgresql
+        systemctl enable postgresql
+
+        # Expose Postgres to Remote Connections
+        firewall-cmd --permanent --add-service=postgresql
+        firewall-cmd --reload
+
+        # Create Database
+        sudo -u postgres createdb ${dbName}
+
+        # Add Remote Role to Postgres
+        sudo -u postgres psql -d ${dbName} -c "CREATE ROLE ${dbUser} WITH ENCRYPTED PASSWORD '${dbPass}';"
+        sudo -u postgres psql -d ${dbName} -c "GRANT ALL PRIVILEGES ON DATABASE ${dbName} TO ${dbUser};"
+        sudo -u postgres psql -d ${dbName} -c "ALTER ROLE ${dbUser} WITH LOGIN;"
+
+        # Allow Connections from Anywhere
+        # Should replace this with CMS HOST IP
+        echo "listen_addresses = '*'" >> /var/lib/pgsql/data/postgresql.conf
+        # Limit Remote Connections to the Remote User on the Development Database
+        echo "host    ${dbName}     ${dbUser}          0.0.0.0/0               md5" >> /var/lib/pgsql/data/pg_hba.conf
+        systemctl restart postgresql
+
+        # Reboot because
+        reboot
       `,
     });
   }
