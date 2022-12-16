@@ -4,6 +4,9 @@
   "version": "0.1.0",
   "description": "A Strapi application",
   "scripts": {
+    "postinstall": "openapi --input https://dash.readme.com/api/v1/api-registry/93f22ll93rmuy1 --output ./.api/clover-platform",
+    "generate": "strapi ts:generate-types",
+    "content-types:list": "strapi content-types:list",
     "develop": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
@@ -14,6 +17,8 @@
     "@strapi/plugin-i18n": "4.5.3",
     "@strapi/plugin-users-permissions": "4.5.3",
     "@strapi/strapi": "4.5.3",
+    "openapi-typescript-codegen": "^0.23.0",
+    "openapi2typescript": "^0.2.1",
     "pg": "8.6.0"
   },
   "author": {

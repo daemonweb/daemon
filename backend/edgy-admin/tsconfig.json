@@ -20,5 +20,8 @@
     "src/admin/",
     "**/*.test.*",
     "src/plugins/**"
-  ]
+  ],
+  "paths": {
+    "@clover-platform": ["./.api/clover-platform"]
+  }
 }

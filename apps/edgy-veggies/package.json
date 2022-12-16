@@ -1,7 +1,6 @@
 {
   "name": "edgy-veggies",
   "scripts": {
-    "postinstall": "openapi --input https://dash.readme.com/api/v1/api-registry/93f22ll93rmuy1 --output ./.api/clover-platform",
     "lint": "eslint \"src/**/*.{ts,tsx}\"",
     "lint:fix": "eslint \"src/**/*.{ts,tsx}\" --fix",
     "dev": "solid-start dev",
@@ -19,7 +18,6 @@
     "dotenv": "^16.0.3",
     "esbuild": "^0.15.15",
     "eslint-config-custom": "workspace:0.0.0",
-    "openapi-typescript-codegen": "^0.23.0",
     "postcss": "^8.4.19",
     "rollup": "^3.4.0",
     "solid-start-node": "^0.2.5",

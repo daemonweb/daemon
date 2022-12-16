@@ -12,11 +12,11 @@ export default defineConfig(() => {
     ssr: {
       noExternal: ["@hope-ui/core", "@hope-ui/styles"],
     },
-    resolve: {
-      alias: [
-        { find: '@clover-platform', replacement: resolve(__dirname, './.api/clover-platform') }
-      ]
-    },
+    // resolve: {
+    //   alias: [
+    //     { find: '@clover-platform', replacement: resolve(__dirname, './.api/clover-platform') }
+    //   ]
+    // },
     envDir: __dirname,
   };
 });
