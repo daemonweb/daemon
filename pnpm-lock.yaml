@@ -83,6 +83,7 @@ importers:
       '@solidjs/router': ^0.6.0
       autoprefixer: ^10.4.12
       postcss: ^8.4.18
+      solid-icons: ^1.0.4
       solid-js: ^1.6.2
       solid-start: ^0.2.0
       solid-start-node: ^0.2.0
@@ -93,6 +94,7 @@ importers:
     dependencies:
       '@solidjs/meta': 0.28.2_solid-js@1.6.4
       '@solidjs/router': 0.6.0_solid-js@1.6.4
+      solid-icons: 1.0.4_solid-js@1.6.4
       solid-js: 1.6.4
       solid-start: 0.2.7_le4rw43yirwwnjxg2fumcxd2iq
       undici: 5.14.0
@@ -5363,6 +5365,15 @@ packages:
       solid-js: '*'
     dependencies:
       solid-js: 1.6.2
+    dev: false
+
+  /solid-icons/1.0.4_solid-js@1.6.4:
+    resolution: {integrity: sha512-gJTp4in3+OYCs9WvDkSLt4Los2unR3Uoder8wjh15GsfP20xiNOLfPTJllXmn+fI8+k3x7bRYtLGIgWd9fUQug==}
+    engines: {node: '>= 16'}
+    peerDependencies:
+      solid-js: '*'
+    dependencies:
+      solid-js: 1.6.4
     dev: false
 
   /solid-js/1.6.2:
