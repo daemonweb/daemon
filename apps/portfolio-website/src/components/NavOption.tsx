@@ -1,4 +1,5 @@
-import { JSXElement, onMount, createSignal } from "solid-js"
+import { JSXElement, onMount, createSignal } from "solid-js";
+import { A } from "solid-start";
 
 type NavOptionProps = {
     icon: JSXElement,
@@ -21,7 +22,7 @@ export default function NavOption(props: NavOptionProps) {
 
     return (
         <> 
-            <a 
+            <A 
                 href={props.path || "#"} 
                 class={combineClasses(
                     isCurrent()
@@ -32,7 +33,7 @@ export default function NavOption(props: NavOptionProps) {
             >
                 {props.icon}
                 <span class="flex-1">{props.title}</span>
-            </a>
+            </A>
         </>
                        
     )
