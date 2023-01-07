@@ -32,7 +32,7 @@ export default function NavOption(props: NavOptionProps) {
                 )}
             >
                 {props.icon}
-                <span class="flex-1">{props.title}</span>
+                <span class="flex-1 ml-1.5">{props.title}</span>
             </A>
         </>
                        

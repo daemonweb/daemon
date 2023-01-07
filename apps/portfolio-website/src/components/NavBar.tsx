@@ -6,27 +6,27 @@ const options = [
     {
         title: "Home",
         path: "/",
-        icon: <HiOutlineHome class="mr-3 h-6 w-6 text-indigo-300"/>,
+        icon: <HiOutlineHome size={24} />,
     },
     {
         title: "Services",
         path: "/services",
-        icon: <HiOutlineBriefcase class="mr-3 h-6 w-6 text-indigo-300"/>,
+        icon: <HiOutlineBriefcase size={24}/>,
     },
     {
         title: "Projects",
         path: "/projects",
-        icon: <HiOutlineFolder class="mr-3 h-6 w-6 text-indigo-300"/>,
+        icon: <HiOutlineFolder size={24}/>,
     },
     {
         title: "Skills",
         path: "/skills",
-        icon: <HiOutlineFire class="mr-3 h-6 w-6 text-indigo-300"/>,
+        icon: <HiOutlineFire size={24}/>,
     },
     {
         title: "Resume",
         path: "/resume",
-        icon: <HiOutlineNewspaper class="mr-3 h-6 w-6 text-indigo-300"/>,
+        icon: <HiOutlineNewspaper size={24}/>,
     },
 ]
 
@@ -39,7 +39,7 @@ export default function NavBar() {
                     <img class="h-16 w-auto" src="/daemon_logo.svg" alt="Your Company"/>
                 </div>
                 <nav class="mt-8 flex-1 space-y-1 px-2" aria-label="Sidebar">
-                    {<For each={options}>
+                    <For each={options}>
                         {(option) => 
                             <NavOption
                                 title={option.title} 
@@ -48,7 +48,6 @@ export default function NavBar() {
                             />
                         }
                     </For>
-                    }
                 </nav>
             </div>
             <div class="flex flex-shrink-0 border-t border-indigo-800 p-4">
