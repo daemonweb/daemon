@@ -1,4 +1,5 @@
-import { HiOutlineHome, HiOutlineBriefcase, HiOutlineFolder, HiOutlineNewspaper, HiOutlineChat, HiOutlineFire } from "solid-icons/hi";
+import { Icon } from "solid-heroicons";
+import { home, briefcase, commandLine, folder, clipboardDocumentList } from "solid-heroicons/outline";
 import { For } from "solid-js";
 import NavOption from "./NavOption";
 
@@ -6,27 +7,27 @@ const options = [
     {
         title: "Home",
         path: "/",
-        icon: <HiOutlineHome size={24} />,
+        icon: <Icon path={home} class="w-6"/>,
     },
     {
         title: "Services",
         path: "/services",
-        icon: <HiOutlineBriefcase size={24}/>,
+        icon: <Icon path={briefcase} class="w-6"/>,
     },
     {
         title: "Projects",
         path: "/projects",
-        icon: <HiOutlineFolder size={24}/>,
+        icon: <Icon path={folder} class="w-6"/>,
     },
     {
         title: "Skills",
         path: "/skills",
-        icon: <HiOutlineFire size={24}/>,
+        icon: <Icon path={commandLine} class="w-6"/>,
     },
     {
         title: "Resume",
         path: "/resume",
-        icon: <HiOutlineNewspaper size={24}/>,
+        icon: <Icon path={clipboardDocumentList} class="w-6"/>,
     },
 ]
 

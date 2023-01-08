@@ -17,9 +17,10 @@
   "dependencies": {
     "@solidjs/meta": "^0.28.0",
     "@solidjs/router": "^0.6.0",
-    "solid-icons": "^1.0.4",
+    "solid-heroicons": "^3.1.1",
     "solid-js": "^1.6.2",
     "solid-start": "^0.2.0",
+    "solid-start-netlify": "^0.2.11",
     "undici": "^5.11.0"
   },
   "engines": {
