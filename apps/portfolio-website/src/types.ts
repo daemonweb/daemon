@@ -1,3 +1,16 @@
+export type Project = {
+    title: string;
+    thumbnail: string;
+    description: string;
+    repoUrl?: string;
+    url: string;
+    publishDate: Date;
+    type: ProjectType;
+    features: ProjectFeature[];
+    tech: ProjectTech[];
+    roles: ProjectRole[];
+}
+
 export const enum ProjectType {
     Website = "Website",
     App = "App",
