@@ -1,4 +1,4 @@
-import { ProjectFeature, ProjectRole, ProjectTech, ProjectType } from "../types";
+import { Project, ProjectFeature, ProjectRole, ProjectTech, ProjectType } from "../types";
 
 
 export default [
@@ -6,6 +6,7 @@ export default [
         title: "Muskoka Marketing Website",
         thumbnail: "/muskoka.png",
         description: "A website for a local business in Muskoka, Ontario.",
+        repoUrl: "https://github.com/JoshElias/muskoka-website_2022",
         url: "https://www.muskokacabco.com",
         publishDate: new Date("2021-01-01"),
         type: ProjectType.Website,
@@ -46,6 +47,7 @@ export default [
         title: "SMART Marketing Website",
         thumbnail: "/smart.png",
         description: "A website for the Society of Manufacturing and Automation Robotics Technologists.",
+        repoUrl: "https://github.com/JoshElias/smart-website",
         url: "https://www.smartmrp.com",
         publishDate: new Date("2018-01-01"),
         type: ProjectType.Website,
@@ -137,6 +139,7 @@ export default [
         title: "Tempostorm Website",
         url: "https://www.tempostorm.com/",
         description: "A website for Car Loans Canada.",
+        repoUrl: "https://github.com/JoshElias/esports-website",
         publishDate: new Date("2015-01-01"),
         type: ProjectType.Website,
         features: [
@@ -162,6 +165,7 @@ export default [
         title: "Deck Builder",
         url: "https://web.archive.org/web/20200810074356/https://www.carloanscanada.com/",
         description: "A website for Car Loans Canada.",
+        repoUrl: "https://github.com/JoshElias/esports-website",
         publishDate: new Date("2016-01-01"),
         type: ProjectType.Game,
         features: [
@@ -178,5 +182,4 @@ export default [
             ProjectRole.Backend,
         ]
     }
-
-]
+] as Project[];
