@@ -34,7 +34,7 @@ const options = [
 
 export default function NavBar() {
     return (      
-        <div class="flex min-h-0 flex-1 flex-col bg-indigo-700">
+        <div class="flex h-full flex-col bg-indigo-700">
             <div class="flex flex-1 flex-col overflow-y-auto pt-5 pb-4">
                 <div class="flex flex-shrink-0 items-center px-4">
                     <img class="h-16 w-auto" src="/daemon_logo.svg" alt="Your Company"/>
