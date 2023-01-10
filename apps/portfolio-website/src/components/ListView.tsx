@@ -23,15 +23,20 @@ function formatDate(date: Date) {
   });
 }
 
+function sortProjects(projects: Project[]) {
+  return projects.sort((a, b) => {
+    return b.publishDate.getTime() - a.publishDate.getTime();
+  });
+}
+
 export default function ListView(props: ListViewProps) {
 
 
     return (
       <div class="
-        container 
+      container 
         mx-auto 
         px-4 sm:px-8 lg:px-16
-        overflow-x-scroll overflow-y-hidden
       ">
       
         <div class="sm:flex sm:items-center">
@@ -40,10 +45,13 @@ export default function ListView(props: ListViewProps) {
             <p class="mt-2 text-sm text-gray-700">{props.description}</p>
           </div>
         </div>
+        
         <div class="mt-8 flex flex-col">
           <div class="-my-2 -mx-4 overflow-x-auto sm:-mx-6 lg:-mx-8">
             <div class="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
-              <div class="overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
+
+              {/* Actual Table */}
+              <div class="max-w-6xl overflow-hidden shadow ring-1 ring-black ring-opacity-5 md:rounded-lg">
                 <table class="min-w-full divide-y divide-gray-300">
                   <thead class="bg-gray-50">
                     <tr>
@@ -60,7 +68,7 @@ export default function ListView(props: ListViewProps) {
                   </thead>
                   <tbody class="divide-y divide-gray-200 bg-white">
                     
-                    <For each={props.projects}>
+                    <For each={sortProjects(props.projects)}>
                         {(project) => 
                           <tr>
                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
@@ -69,9 +77,9 @@ export default function ListView(props: ListViewProps) {
                                 <div class="h-10 w-10 flex-shrink-0">
                                   <img class="h-10 w-10 rounded-full" src={project.thumbnail} alt=""/>
                                 </div>
-                                <div class="ml-4">
+                                <div class="ml-4 w-[600px]">
                                   <div class="font-medium text-gray-900">{project.title}</div>
-                                  <div class="text-gray-500">{project.description}</div>
+                                  <div class="text-gray-500 grow-0 text-ellipsis overflow-hidden ...">{project.description}</div>
                                 </div>
                               </div>
                             </td>
@@ -81,15 +89,15 @@ export default function ListView(props: ListViewProps) {
                             </td>
 
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
-                              <div class="flex justify-center text-gray-900">
-                                <a href={project.repoUrl} class="text-indigo-600 hover:text-indigo-900">
+                              <div class="flex text-gray-900">
+                                <a href={project.repoUrl} target="_blank" class="text-indigo-600 hover:text-indigo-900">
                                   <img class="h-9" src="/github_logo.svg"/>
                                   </a>
                               </div>
                             </td>
 
                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                              <a href={project.url} class="text-indigo-600 hover:text-indigo-900">Visit</a>
+                              <a href={project.url} target="_blank" class="text-indigo-600 hover:text-indigo-900">Visit</a>
                             </td>
                           </tr>
                         }

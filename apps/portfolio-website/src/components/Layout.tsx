@@ -11,7 +11,7 @@ export default function Layout(props: LayoutProps) {
             <div class="shrink-0 w-64 h-full">
                 {props.navBar}
             </div>     
-            <div class="grow w-full">
+            <div class="grow w-full overflow-y-scroll overflow-x-hidden">
                 {props.content}
             </div> 
         </div>
