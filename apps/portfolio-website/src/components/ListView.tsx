@@ -9,8 +9,8 @@ type ListViewProps = {
 
 const ListViewConfig = {
   title: "Project",
-  source: "Source",
   publishDate: "Published",
+  source: "Source",
 }
 
 const columns = Object.values(ListViewConfig);
@@ -27,7 +27,13 @@ export default function ListView(props: ListViewProps) {
 
 
     return (
-      <div class="px-4 sm:px-6 lg:px-8">
+      <div class="
+        container 
+        mx-auto 
+        px-4 sm:px-8 lg:px-16
+        overflow-x-scroll overflow-y-hidden
+      ">
+      
         <div class="sm:flex sm:items-center">
           <div class="sm:flex-auto">
             <h1 class="text-xl font-semibold text-gray-900">{props.title}</h1>
@@ -57,7 +63,6 @@ export default function ListView(props: ListViewProps) {
                     <For each={props.projects}>
                         {(project) => 
                           <tr>
-
                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
 
                               <div class="flex items-center">
@@ -74,16 +79,14 @@ export default function ListView(props: ListViewProps) {
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                               <span class="inline-flex rounded-full bg-green-100 px-2 text-xs font-semibold leading-5 text-green-800">{formatDate(project.publishDate)}</span>
                             </td>
-                        <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
+
+                            <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                               <div class="flex justify-center text-gray-900">
                                 <a href={project.repoUrl} class="text-indigo-600 hover:text-indigo-900">
                                   <img class="h-9" src="/github_logo.svg"/>
                                   </a>
                               </div>
                             </td>
-
-
-
 
                             <td class="relative whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
                               <a href={project.url} class="text-indigo-600 hover:text-indigo-900">Visit</a>
@@ -98,6 +101,7 @@ export default function ListView(props: ListViewProps) {
             </div>
           </div>
         </div>
+      
       </div>
     )
 

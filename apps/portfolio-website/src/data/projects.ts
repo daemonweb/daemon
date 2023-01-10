@@ -4,7 +4,7 @@ import { Project, ProjectFeature, ProjectRole, ProjectTech, ProjectType } from "
 export default [
     {
         title: "Muskoka Marketing Website",
-        thumbnail: "/muskoka.png",
+        thumbnail: "/muskoka_website_thumbnail.jpg",
         description: "A website for a local business in Muskoka, Ontario.",
         repoUrl: "https://github.com/JoshElias/muskoka-website_2022",
         url: "https://www.muskokacabco.com",
@@ -24,7 +24,7 @@ export default [
     },
     {
         title: "ICPNC Website",
-        thumbnail: "/icpnc.png",
+        thumbnail: "/icpnc_thumbnail.jpg",
         description: "A website for the International Council of Psychiatric Nurses of Canada.",
         url: "https://www.icpnc.org",
         publishDate: new Date("2021-01-01"),
@@ -45,7 +45,7 @@ export default [
     },
     {
         title: "SMART Marketing Website",
-        thumbnail: "/smart.png",
+        thumbnail: "/smart_website_thumbnail.jpg",
         description: "A website for the Society of Manufacturing and Automation Robotics Technologists.",
         repoUrl: "https://github.com/JoshElias/smart-website",
         url: "https://www.smartmrp.com",
@@ -67,7 +67,7 @@ export default [
     },
     {
         title: "AVA Product Suite",
-        thumbnail: "/ava.png",
+        thumbnail: "/autocorp_thumbnail.jpg",
         description: "A suite of products for the AVA platform.",
         url: "https://www.autocorp.ai",
         publishDate: new Date("2020-01-01"),
@@ -93,8 +93,9 @@ export default [
     },
     {
         title: "Car Loans Canada Marketing Website",
-        url: "https://web.archive.org/web/20200810074356/https://www.carloanscanada.com/",
+        url: "https://web.archive.org/web/20191007192100/https://www.carloanscanada.com/",
         description: "A website for Car Loans Canada.",
+        thumbnail: "/clc_website_thumbnail.jpg",
         publishDate: new Date("2018-01-01"),
         type: ProjectType.Website,
         features: [
@@ -116,8 +117,9 @@ export default [
     },
     {
         title: "Car Loans Canada Credit Application",
-        url: "https://web.archive.org/web/20200810074356/https://www.carloanscanada.com/",
+        url: "https://apply.carloanscanada.com/",
         description: "A website for Car Loans Canada.",
+        thumbnail: "/clc_app_thumbnail.jpg",
         publishDate: new Date("2018-01-01"),
         type: ProjectType.Website,
         features: [
@@ -140,6 +142,7 @@ export default [
         url: "https://www.tempostorm.com/",
         description: "A website for Car Loans Canada.",
         repoUrl: "https://github.com/JoshElias/esports-website",
+        thumbnail: "/tempo_website_thumbnail.jpg",
         publishDate: new Date("2015-01-01"),
         type: ProjectType.Website,
         features: [
@@ -163,9 +166,32 @@ export default [
     },
     {
         title: "Deck Builder",
-        url: "https://web.archive.org/web/20200810074356/https://www.carloanscanada.com/",
+        url: "https://tempostorm.com/hearthstone/sealed-generator",
         description: "A website for Car Loans Canada.",
         repoUrl: "https://github.com/JoshElias/esports-website",
+        thumbnail: "/tempo_draft_thumbnail.jpg",
+        publishDate: new Date("2016-01-01"),
+        type: ProjectType.Game,
+        features: [
+            ProjectFeature.UserManagement,
+        ],
+        tech: [
+            ProjectTech.LoopbackJS,
+            ProjectTech.Angular1,
+            ProjectTech.MongoDB,
+            ProjectTech.NodeJS,
+            ProjectTech.Express,
+        ],
+        roles: [
+            ProjectRole.Backend,
+        ]
+    },
+    {
+        title: "Spark Screens",
+        url: "https://web.archive.org/web/20180218184619/http://sparkscreens.com/",
+        description: "A website for Car Loans Canada.",
+        repoUrl: "https://github.com/JoshElias/esports-website",
+        thumbnail: "/spark_thumbnail.jpg",
         publishDate: new Date("2016-01-01"),
         type: ProjectType.Game,
         features: [

@@ -7,7 +7,7 @@ type LayoutProps = {
 
 export default function Layout(props: LayoutProps) {
     return (
-        <div class="flex h-screen">
+        <div class="flex h-screen overflow-hidden">
             <div class="shrink-0 w-64 h-full">
                 {props.navBar}
             </div>     
