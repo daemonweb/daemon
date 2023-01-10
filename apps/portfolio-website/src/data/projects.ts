@@ -3,12 +3,12 @@ import { Project, ProjectFeature, ProjectRole, ProjectTech, ProjectType } from "
 
 export default [
     {
-        title: "Muskoka Marketing Website",
+        title: "Muskoka Cabinet Company",
         thumbnail: "/muskoka_website_thumbnail.jpg",
-        description: "A website for a local business in Muskoka, Ontario.",
+        description: "A marketing website for a local cabinet making company.",
         repoUrl: "https://github.com/JoshElias/muskoka-website_2022",
         url: "https://www.muskokacabco.com",
-        publishDate: new Date("2021-01-01"),
+        publishDate: new Date("2022-07-12"),
         type: ProjectType.Website,
         features: [
             ProjectFeature.CMS,
@@ -23,11 +23,11 @@ export default [
         ]
     },
     {
-        title: "ICPNC Website",
+        title: "ICPNC",
         thumbnail: "/icpnc_thumbnail.jpg",
-        description: "A website for the International Council of Psychiatric Nurses of Canada.",
+        description: "The ICPNC brings together leading practitioners in child protection to enhance Canadian organizations’ capacity to ensure results-oriented, innovative and effective child protection programming.",
         url: "https://www.icpnc.org",
-        publishDate: new Date("2021-01-01"),
+        publishDate: new Date("2020-10-05"),
         type: ProjectType.Website,
         features: [
             ProjectFeature.CMS,
@@ -44,12 +44,12 @@ export default [
         ]
     },
     {
-        title: "SMART Marketing Website",
+        title: "SMART MRP",
         thumbnail: "/smart_website_thumbnail.jpg",
-        description: "A website for the Society of Manufacturing and Automation Robotics Technologists.",
+        description: "SMART is a shop management and resource tool that helps manufacturers and distributors manage their shop floor and resources.",
         repoUrl: "https://github.com/JoshElias/smart-website",
         url: "https://www.smartmrp.com",
-        publishDate: new Date("2018-01-01"),
+        publishDate: new Date("2017-05-12"),
         type: ProjectType.Website,
         features: [
             ProjectFeature.VideoHosting,
@@ -68,9 +68,9 @@ export default [
     {
         title: "AVA Product Suite",
         thumbnail: "/autocorp_thumbnail.jpg",
-        description: "A suite of products for the AVA platform.",
+        description: "Autocorp provides high converting commerce tools for forward thinking dealers that fast tracks your online deal & financing process.",
         url: "https://www.autocorp.ai",
-        publishDate: new Date("2020-01-01"),
+        publishDate: new Date("2019-06-11"),
         type: ProjectType.SaaS,
         features: [
             ProjectFeature.CMS,
@@ -92,11 +92,11 @@ export default [
         ]
     },
     {
-        title: "Car Loans Canada Marketing Website",
+        title: "Car Loans Canada",
         url: "https://web.archive.org/web/20191007192100/https://www.carloanscanada.com/",
-        description: "A website for Car Loans Canada.",
+        description: "Find out what vehicles you're eligible for today.",
         thumbnail: "/clc_website_thumbnail.jpg",
-        publishDate: new Date("2018-01-01"),
+        publishDate: new Date("2018-03-15"),
         type: ProjectType.Website,
         features: [
             ProjectFeature.CMS,
@@ -118,9 +118,9 @@ export default [
     {
         title: "Car Loans Canada Credit Application",
         url: "https://apply.carloanscanada.com/",
-        description: "A website for Car Loans Canada.",
+        description: "A multi-step credit application for Car Loans Canada.",
         thumbnail: "/clc_app_thumbnail.jpg",
-        publishDate: new Date("2018-01-01"),
+        publishDate: new Date("2018-05-13"),
         type: ProjectType.Website,
         features: [
             ProjectFeature.LeadGen,
@@ -140,10 +140,10 @@ export default [
     {
         title: "Tempostorm Website",
         url: "https://www.tempostorm.com/",
-        description: "A website for Car Loans Canada.",
+        description: "Tempostorm is a website for esports news and content.",
         repoUrl: "https://github.com/JoshElias/esports-website",
         thumbnail: "/tempo_website_thumbnail.jpg",
-        publishDate: new Date("2015-01-01"),
+        publishDate: new Date("2015-08-17"),
         type: ProjectType.Website,
         features: [
             ProjectFeature.LeadGen,
@@ -167,10 +167,10 @@ export default [
     {
         title: "Deck Builder",
         url: "https://tempostorm.com/hearthstone/sealed-generator",
-        description: "A website for Car Loans Canada.",
+        description: "A deck builder for Hearthstone made for Redbull Tournaments.",
         repoUrl: "https://github.com/JoshElias/esports-website",
         thumbnail: "/tempo_draft_thumbnail.jpg",
-        publishDate: new Date("2016-01-01"),
+        publishDate: new Date("2016-02-03"),
         type: ProjectType.Game,
         features: [
             ProjectFeature.UserManagement,
@@ -189,10 +189,10 @@ export default [
     {
         title: "Spark Screens",
         url: "https://web.archive.org/web/20180218184619/http://sparkscreens.com/",
-        description: "A website for Car Loans Canada.",
+        description: "A kiosk platform built with Unity3D and Android Studio",
         repoUrl: "https://github.com/JoshElias/esports-website",
         thumbnail: "/spark_thumbnail.jpg",
-        publishDate: new Date("2016-01-01"),
+        publishDate: new Date("2012-01-17"),
         type: ProjectType.Game,
         features: [
             ProjectFeature.UserManagement,
