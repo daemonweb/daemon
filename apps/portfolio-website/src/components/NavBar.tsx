@@ -1,35 +1,7 @@
-import { Icon } from "solid-heroicons";
-import { home, briefcase, commandLine, folder, clipboardDocumentList } from "solid-heroicons/outline";
+
 import { For } from "solid-js";
 import NavOption from "./NavOption";
-
-const options = [
-    {
-        title: "Home",
-        path: "/",
-        icon: <Icon path={home} class="w-6"/>,
-    },
-    {
-        title: "Services",
-        path: "/services",
-        icon: <Icon path={briefcase} class="w-6"/>,
-    },
-    {
-        title: "Projects",
-        path: "/projects",
-        icon: <Icon path={folder} class="w-6"/>,
-    },
-    {
-        title: "Skills",
-        path: "/skills",
-        icon: <Icon path={commandLine} class="w-6"/>,
-    },
-    {
-        title: "Resume",
-        path: "/resume",
-        icon: <Icon path={clipboardDocumentList} class="w-6"/>,
-    },
-]
+import navOptions from "../data/navOptions";
 
 
 export default function NavBar() {
@@ -40,7 +12,7 @@ export default function NavBar() {
                     <img class="h-16 w-auto" src="/daemon_logo.svg" alt="Your Company"/>
                 </div>
                 <nav class="mt-8 flex-1 space-y-1 px-2" aria-label="Sidebar">
-                    <For each={options}>
+                    <For each={navOptions}>
                         {(option) => 
                             <NavOption
                                 title={option.title} 
