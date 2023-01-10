@@ -1,30 +1,22 @@
-import { JSXElement, onMount, createSignal } from "solid-js";
-import { A } from "solid-start";
+import { JSXElement } from "solid-js";
+import { A, useMatch } from "solid-start";
+import { combineClasses } from "../utils";
+
 
 type NavOptionProps = {
     icon: JSXElement,
     title: string,
-    path?: string,
-}
-
-function combineClasses(...classes: string[]) {
-    return classes.filter(Boolean).join(' ')
+    path: string,
 }
 
 export default function NavOption(props: NavOptionProps) {
-    const [isCurrent, setIsCurrent] = createSignal(false);
-
-    onMount(() => {
-        if(window.location.pathname === props.path) {
-            setIsCurrent(true);
-        }
-    })
+    const match = useMatch(() => props.path);
 
     return (
         <A 
-            href={props.path || "#"} 
+            href={props.path} 
             class={combineClasses(
-                isCurrent()
+                match()
                     ? 'bg-indigo-800 text-white' 
                     : 'text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75',
                 'group flex items-center px-2 py-2 text-sm font-medium rounded-md'
