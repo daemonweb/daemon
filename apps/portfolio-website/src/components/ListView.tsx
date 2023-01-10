@@ -1,4 +1,5 @@
 import { For } from "solid-js";
+import { A } from "solid-start";
 import { Project } from "../types";
 
 type ListViewProps = {
@@ -72,7 +73,7 @@ export default function ListView(props: ListViewProps) {
                         {(project) => 
                           <tr>
                             <td class="whitespace-nowrap py-4 pl-4 pr-3 text-sm sm:pl-6">
-
+                              <A href="#">
                               <div class="flex items-center">
                                 <div class="h-10 w-10 flex-shrink-0">
                                   <img class="h-10 w-10 rounded-full" src={project.thumbnail} alt=""/>
@@ -82,6 +83,7 @@ export default function ListView(props: ListViewProps) {
                                   <div class="text-gray-500 grow-0 text-ellipsis overflow-hidden ...">{project.description}</div>
                                 </div>
                               </div>
+                              </A>
                             </td>
 
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
@@ -90,7 +92,7 @@ export default function ListView(props: ListViewProps) {
 
                             <td class="whitespace-nowrap px-3 py-4 text-sm text-gray-500">
                               <div class="flex text-gray-900">
-                                <a href={project.repoUrl} target="_blank" class="text-indigo-600 hover:text-indigo-900">
+                                <a href={project.repoUrl} target="_blank" class="text-indigo-600 hover:text-indigo-900 disabled:opacity-75">
                                   <img class="h-9" src="/github_logo.svg"/>
                                   </a>
                               </div>
