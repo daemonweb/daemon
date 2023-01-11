@@ -15,6 +15,7 @@ export default function NavOption(props: NavOptionProps) {
             class="group flex items-center px-2 py-2 text-sm font-medium rounded-md"
             activeClass="bg-indigo-800 text-white"
             inactiveClass="text-indigo-100 hover:bg-indigo-600 hover:bg-opacity-75"
+            end={props.path === "/"}
         >
             {props.icon}
             <span class="flex-1 ml-1.5">{props.title}</span>
